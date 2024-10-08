@@ -1,7 +1,7 @@
 # Fall 2024 - Intro to Game Design @ SUNY New Paltz
 * Name: Benjamin Jon
 * [Trello Board](https://trello.com/b/xEwWLpOi/godot-core-game-mechanic)
-* [Proposal]()
+* [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
 * [itch.io](https://itch.io/profile/bjon1)
 
 ### 2024-10-05 - 2hr Set up Repository and Watched Godot Tutorial
@@ -12,6 +12,7 @@
 * Create Base Character Class containing variables and animation state machine
 * Created a Rogue Class extending Base Character
 
-### 2024-10-08 - 2hr Improved a State Machine Design 
+### 2024-10-08 - 4hr Created a State Machine Design, and added Animation Player
 * Attempted to improve the state machine design to fix an animation bug
 * Still a work in progress
+* Shifted from AnimationSprite2D to AnimationPlayer to handle animations as a quick fix for animation bug

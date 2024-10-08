@@ -7,7 +7,7 @@ enum State {
 	ATTACK
 }
 
-var current_state: State = State.IDLE
+var current_state = State.IDLE
 
 const DECELERATION: float = 50.0 
 @export var current_health: int = 100
@@ -15,28 +15,15 @@ const DECELERATION: float = 50.0
 @export var health_regen: float = 0.1
 @export var health_regen_delay: float = 1.0
 @export var speed: float = 150.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var input_enabled: bool = true
 
 func _physics_process(_delta: float) -> void:
 	handle_input(get_input())  # Process the input and act accordingly
-	state_machine()  # Update the animation based on the current state
-
-func state_machine() -> void:
-	match current_state:
-		State.IDLE:
-			if animated_sprite.animation != "Idle":
-				animated_sprite.play("Idle")
-		State.WALK:
-			handle_movement(get_input()["direction"])  # Handle movement and animation
-			if animated_sprite.animation != "Walk":
-				animated_sprite.play("Walk")
-		State.ATTACK:
-			execute_attack()  # Handle attack action
-			if animated_sprite.animation != "Attack":
-				animated_sprite.play("Attack")
-
+	#state_machine()  # Update the animation based on the current state
+	
 # Gather input data from the player
 func get_input() -> Dictionary:
 	var input_data = {
@@ -61,11 +48,14 @@ func get_input() -> Dictionary:
 # Process the gathered input and handle character movement and actions
 func handle_input(input_data: Dictionary) -> void:
 	if input_data["attack"]:
-		current_state = State.ATTACK  # Switch to ATTACK state
+		animation_player.stop()
+		animation_player.queue("Attack")
+		execute_attack()
 	elif input_data["direction"] != Vector2.ZERO:
-		current_state = State.WALK  # Switch to WALK state if moving
+		animation_player.play("Walk")		
+		handle_movement(get_input()["direction"]) 
 	else:
-		current_state = State.IDLE
+		animation_player.queue("Idle")
 
 # Handle movement and animation based on direction input
 func handle_movement(direction: Vector2) -> void:
@@ -82,6 +72,7 @@ func handle_movement(direction: Vector2) -> void:
 	move_and_slide()
 
 func execute_attack() -> void:  # Handle attack action
+	await get_tree().create_timer(1.0)
 	attack()  # Call the attack method implemented in the child classes
 	
 
