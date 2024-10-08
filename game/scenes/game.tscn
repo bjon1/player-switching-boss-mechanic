@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm2l3xw1jnje4"]
 
 [ext_resource type="PackedScene" uid="uid://p3ug4nhudlfc" path="res://scenes/player.tscn" id="1_clv6e"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="2_wnewi"]
+[ext_resource type="Script" path="res://actors/Rogue.gd" id="2_wnewi"]
 [ext_resource type="Script" path="res://scripts/label.gd" id="3_b8hl0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n365k"]
@@ -11,6 +11,11 @@
 [node name="Player" parent="." instance=ExtResource("1_clv6e")]
 position = Vector2(51, 109)
 script = ExtResource("2_wnewi")
+current_health = null
+max_health = null
+health_regen = null
+health_regen_delay = null
+speed = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(91, 67)

@@ -45,6 +45,14 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_q3k7b")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q3k7b")
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_d6o1o")
@@ -76,7 +84,6 @@ height = 40.0
 position = Vector2(22, -52)
 sprite_frames = SubResource("SpriteFrames_tcaca")
 animation = &"Walk"
-frame_progress = 0.582622
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(22, -53)
