@@ -2,7 +2,7 @@
 * Name: Benjamin Jon
 * [Trello Board](https://trello.com/b/xEwWLpOi/godot-core-game-mechanic)
 * [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
-* [itch.io](https://itch.io/profile/bjon1)
+* [itch.io](https://jonb1.itch.io/game)
 
 ### 2024-10-05 - 2hr Set up Repository and Watched Godot Tutorial
 * Set up Git/GitHub Repository
