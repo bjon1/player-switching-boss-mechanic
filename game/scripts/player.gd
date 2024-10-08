@@ -38,12 +38,5 @@ func handle_movement_and_animation(direction: Vector2) -> void:
 		velocity.y = move_toward(velocity.y, 0, DECELERATION)
 		animated_sprite.stop()
 
-# Handle attack logic
 func attack() -> void:
-	is_attacking = true
-	animated_sprite.play("Attack")
-	$AnimatedSprite2D.connect("animation_finished", self, "_on_attack_finished")
-
-func _on_attack_finished() -> void:
-	is_attacking = false
-	$AnimatedSprite2D.disconnect("animation_finished", self, "_on_attack_finished")
+	pass
