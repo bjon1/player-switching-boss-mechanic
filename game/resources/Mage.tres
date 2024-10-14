@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Mage" load_steps=2 format=3 uid="uid://c35hvj7eshmjr"]
+
+[ext_resource type="Script" path="res://resources/classes/MageData.gd" id="1_w22ny"]
+
+[resource]
+script = ExtResource("1_w22ny")
+character_name = "Mage"
+current_health = 100
+max_health = 100
+health_regen = 3.0
+health_regen_delay = 1.0
+speed = 150.0
+attack_damage = 7
+animations = {}

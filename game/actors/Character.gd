@@ -1,23 +1,21 @@
 extends CharacterBody2D
 class_name Character
 
-enum State {
-	IDLE,
-	WALK,
-	ATTACK
-}
 
-const DECELERATION: float = 50.0 
-@export var current_health: int = 100
-@export var max_health: int = 100
-@export var health_regen: float = 0.1
-@export var health_regen_delay: float = 1.0
-@export var speed: float = 150.0
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var animation_player: AnimationPlayer
+@onready var animated_sprite: AnimatedSprite2D 
 var input_enabled: bool = true
-	
+var character_datas = []
+var current_character: CharacterData
+const DECELERATION: float = 50.0 
+
+func _ready():
+	animation_player = $AnimationPlayer
+	animated_sprite = $AnimatedSprite2D
+	character_datas.append(preload("res://resources/Rogue.tres"))
+	character_datas.append(preload("res://resources/Mage.tres"))
+	current_character = character_datas[0]
+
 func _physics_process(_delta: float) -> void:
 	handle_input(get_input())  # Process the input and act accordingly
 	#state_machine()  # Update the animation based on the current state
@@ -26,7 +24,8 @@ func _physics_process(_delta: float) -> void:
 func get_input() -> Dictionary:
 	var input_data = {
 		"direction": Vector2.ZERO,
-		"attack": false
+		"attack": false,
+		"selected_character": null
 	}
 
 	if not input_enabled:
@@ -41,20 +40,38 @@ func get_input() -> Dictionary:
 	# Get attack input (e.g., spacebar)
 	input_data["attack"] = Input.is_action_just_pressed("spacebar")
 	
+	# Check for number key presses (1-9)
+	for i in range(1, 10):  # Loop from 1 to 9
+		if Input.is_action_just_pressed(str(i)):  # Check if the key for 'i' is pressed
+			input_data["selected_character"] = i  # Store the pressed number
+			print(input_data["selected_character"])
+			
+	
 	return input_data
 
 # Process the gathered input and handle character movement and actions
 func handle_input(input_data: Dictionary) -> void:
 	if input_data["attack"]:
-		execute_attack()
+		current_character.attack()
 	elif input_data["direction"] != Vector2.ZERO:
 		handle_movement(get_input()["direction"]) 
+	elif input_data["selected_character"]:
+		switch_character(input_data["selected_character"])
+
+func switch_character(character_num: int):
+	if character_num > len(character_datas):
+		return
+	current_character = character_datas[character_num-1]
+	print("Switched to " + current_character.character_name)
+	print(character_datas[character_num-1])
 
 # Handle movement and animation based on direction input
 func handle_movement(direction: Vector2) -> void:
 	print("Moving")
 	if direction != Vector2.ZERO:
-		velocity = direction * speed
+		velocity = direction * current_character.speed
+		print("SPEED")
+		print(current_character.speed)
 		
 		# Flip sprite based on movement direction
 		if direction.x:
@@ -67,10 +84,8 @@ func handle_movement(direction: Vector2) -> void:
 		velocity.y = move_toward(velocity.y, 0, DECELERATION)
 	move_and_slide()
 
-func execute_attack() -> void:  # Handle attack action
-	print("Attacking")
-	animation_player.play("Attack")
-	attack()  # Call the attack method implemented in the child classes
-
-func attack() -> void:
-	pass  # Implement attack logic in the child classes
+func load_animations(animation_dict):
+	animation_player.clear()  # Clear any old animations
+	for anim_name in animation_dict.keys():
+		var animation = animation_dict[anim_name]
+		animation_player.add_animation(anim_name, animation)

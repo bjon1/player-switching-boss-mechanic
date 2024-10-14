@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Rogue" load_steps=2 format=3 uid="uid://21gn4okmkdcg"]
+
+[ext_resource type="Script" path="res://resources/classes/RogueData.gd" id="1_57jjt"]
+
+[resource]
+script = ExtResource("1_57jjt")
+character_name = "Rogue"
+current_health = 125
+max_health = 125
+health_regen = 2.0
+health_regen_delay = 1.0
+speed = 175.0
+attack_damage = 5
+animations = {}
