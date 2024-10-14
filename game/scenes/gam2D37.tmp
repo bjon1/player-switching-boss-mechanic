@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://bm2l3xw1jnje4"]
+
+[ext_resource type="PackedScene" uid="uid://p3ug4nhudlfc" path="res://scenes/player.tscn" id="1_clv6e"]
+[ext_resource type="Script" path="res://actors/Rogue.gd" id="2_wnewi"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="3_b8hl0"]
+[ext_resource type="Script" path="res://scripts/PlayerStateMachine.gd" id="4_kw7xk"]
+[ext_resource type="Script" path="res://scripts/PlayerIdle.gd" id="5_ld7dh"]
+[ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="6_rui4q"]
+[ext_resource type="Script" path="res://scripts/PlayerAttack.gd" id="7_qga8q"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n365k"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_clv6e")]
+position = Vector2(51, 109)
+script = ExtResource("2_wnewi")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(91, 67)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(55, 390)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2, 1)
+shape = SubResource("WorldBoundaryShape2D_n365k")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-485, 35)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(2, 1)
+shape = SubResource("WorldBoundaryShape2D_n365k")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(33, -256)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(2, 1)
+shape = SubResource("WorldBoundaryShape2D_n365k")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(664, 70)
+rotation = -1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(2, 1)
+shape = SubResource("WorldBoundaryShape2D_n365k")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -468.0
+offset_top = -240.0
+offset_right = -428.0
+offset_bottom = -217.0
+script = ExtResource("3_b8hl0")
+
+[node name="PlayerStateMachine" type="Node" parent="."]
+script = ExtResource("4_kw7xk")
+
+[node name="PlayerIdle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("5_ld7dh")
+
+[node name="PlayerMovement" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_rui4q")
+
+[node name="PlayerAttack" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_qga8q")

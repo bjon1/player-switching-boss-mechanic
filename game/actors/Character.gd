@@ -7,8 +7,6 @@ enum State {
 	ATTACK
 }
 
-var current_state = State.IDLE
-
 const DECELERATION: float = 50.0 
 @export var current_health: int = 100
 @export var max_health: int = 100
@@ -19,7 +17,7 @@ const DECELERATION: float = 50.0
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var input_enabled: bool = true
-
+	
 func _physics_process(_delta: float) -> void:
 	handle_input(get_input())  # Process the input and act accordingly
 	#state_machine()  # Update the animation based on the current state
@@ -48,23 +46,21 @@ func get_input() -> Dictionary:
 # Process the gathered input and handle character movement and actions
 func handle_input(input_data: Dictionary) -> void:
 	if input_data["attack"]:
-		animation_player.stop()
-		animation_player.queue("Attack")
 		execute_attack()
 	elif input_data["direction"] != Vector2.ZERO:
-		animation_player.play("Walk")		
 		handle_movement(get_input()["direction"]) 
-	else:
-		animation_player.queue("Idle")
 
 # Handle movement and animation based on direction input
 func handle_movement(direction: Vector2) -> void:
+	print("Moving")
 	if direction != Vector2.ZERO:
 		velocity = direction * speed
 		
 		# Flip sprite based on movement direction
 		if direction.x:
 			animated_sprite.flip_h = direction.x < 0
+		if not animation_player.is_playing():
+			animation_player.play("Walk")
 	else:
 		# Decelerate when not moving
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
@@ -72,9 +68,9 @@ func handle_movement(direction: Vector2) -> void:
 	move_and_slide()
 
 func execute_attack() -> void:  # Handle attack action
-	await get_tree().create_timer(1.0)
+	print("Attacking")
+	animation_player.play("Attack")
 	attack()  # Call the attack method implemented in the child classes
-	
 
 func attack() -> void:
 	pass  # Implement attack logic in the child classes
