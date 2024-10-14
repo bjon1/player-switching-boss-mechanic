@@ -1,6 +1,7 @@
 extends CharacterData
 class_name Mage
 
+
 func _init():
 	print("Initializing Mage")
 	character_name = "Mage"
@@ -15,8 +16,9 @@ func _init():
 	
 
 func attack():
+	
 	print(character_name + " Attacks!")
-	pass
+	
 
 func activate_sp_ability():
 	pass

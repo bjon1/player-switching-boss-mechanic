@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 
-@onready var animation_player: AnimationPlayer
+#@onready var animation_player: AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D 
 var input_enabled: bool = true
 var character_datas = []
@@ -10,7 +10,7 @@ var current_character: CharacterData
 const DECELERATION: float = 50.0 
 
 func _ready():
-	animation_player = $AnimationPlayer
+	#animation_player = $AnimationPlayer
 	animated_sprite = $AnimatedSprite2D
 	character_datas.append(preload("res://resources/Rogue.tres"))
 	character_datas.append(preload("res://resources/Mage.tres"))
@@ -52,7 +52,7 @@ func get_input() -> Dictionary:
 # Process the gathered input and handle character movement and actions
 func handle_input(input_data: Dictionary) -> void:
 	if input_data["attack"]:
-		current_character.attack()
+		current_character.attack()		
 	elif input_data["direction"] != Vector2.ZERO:
 		handle_movement(get_input()["direction"]) 
 	elif input_data["selected_character"]:
@@ -76,16 +76,10 @@ func handle_movement(direction: Vector2) -> void:
 		# Flip sprite based on movement direction
 		if direction.x:
 			animated_sprite.flip_h = direction.x < 0
-		if not animation_player.is_playing():
-			animation_player.play("Walk")
+		if not animated_sprite.is_playing():
+			animated_sprite.play("Rogue_Walk")
 	else:
 		# Decelerate when not moving
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)
 		velocity.y = move_toward(velocity.y, 0, DECELERATION)
 	move_and_slide()
-
-func load_animations(animation_dict):
-	animation_player.clear()  # Clear any old animations
-	for anim_name in animation_dict.keys():
-		var animation = animation_dict[anim_name]
-		animation_player.add_animation(anim_name, animation)
