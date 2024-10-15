@@ -11,4 +11,9 @@ health_regen = 3.0
 health_regen_delay = 1.0
 speed = 150.0
 attack_damage = 7
-animations = {}
+animations = {
+"Attack": "res://resources/animations/Mage_Attack.res",
+"Idle": "res://resources/animations/Mage_Idle.res",
+"Walk": "res://resources/animations/Mage_Walk.res"
+}
+attack_rate = 1.0

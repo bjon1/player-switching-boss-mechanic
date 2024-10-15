@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 
-#@onready var animation_player: AnimationPlayer
+@onready var animation_player: AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D 
 var input_enabled: bool = true
 var character_datas = []
@@ -10,11 +10,13 @@ var current_character: CharacterData
 const DECELERATION: float = 50.0 
 
 func _ready():
-	#animation_player = $AnimationPlayer
+	animation_player = $AnimationPlayer
 	animated_sprite = $AnimatedSprite2D
 	character_datas.append(preload("res://resources/Rogue.tres"))
 	character_datas.append(preload("res://resources/Mage.tres"))
 	current_character = character_datas[0]
+	add_child(character_datas[0].attack_rate_timer)
+	add_child(character_datas[1].attack_rate_timer)
 
 func _physics_process(_delta: float) -> void:
 	handle_input(get_input())  # Process the input and act accordingly
@@ -52,7 +54,7 @@ func get_input() -> Dictionary:
 # Process the gathered input and handle character movement and actions
 func handle_input(input_data: Dictionary) -> void:
 	if input_data["attack"]:
-		current_character.attack()		
+		attack()			
 	elif input_data["direction"] != Vector2.ZERO:
 		handle_movement(get_input()["direction"]) 
 	elif input_data["selected_character"]:
@@ -61,9 +63,23 @@ func handle_input(input_data: Dictionary) -> void:
 func switch_character(character_num: int):
 	if character_num > len(character_datas):
 		return
+	if character_datas[character_num-1] == current_character:
+		return
 	current_character = character_datas[character_num-1]
 	print("Switched to " + current_character.character_name)
+	animation_player.play(current_character.character_name + "_Idle")
 	print(character_datas[character_num-1])
+
+func attack():
+	animation_player.play(current_character.character_name + "_Attack")
+	animation_player.queue(current_character.character_name + "_Idle")		
+	current_character.attack()	
+	print("Timer start")
+	input_enabled = false
+	current_character.attack_rate_timer.start()
+	await current_character.attack_rate_timer.timeout
+	input_enabled = true
+	print("Timer end")
 
 # Handle movement and animation based on direction input
 func handle_movement(direction: Vector2) -> void:
@@ -76,8 +92,8 @@ func handle_movement(direction: Vector2) -> void:
 		# Flip sprite based on movement direction
 		if direction.x:
 			animated_sprite.flip_h = direction.x < 0
-		if not animated_sprite.is_playing():
-			animated_sprite.play("Rogue_Walk")
+		if not animation_player.is_playing():
+			animation_player.play(current_character.character_name + "_Walk")
 	else:
 		# Decelerate when not moving
 		velocity.x = move_toward(velocity.x, 0, DECELERATION)

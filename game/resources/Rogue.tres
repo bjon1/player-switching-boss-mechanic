@@ -9,6 +9,11 @@ current_health = 125
 max_health = 125
 health_regen = 2.0
 health_regen_delay = 1.0
-speed = 175.0
+speed = 200.0
 attack_damage = 5
-animations = {}
+animations = {
+"Attack": "res://resources/animations/Rogue_Attack.res",
+"Idle": "res://resources/animations/Rogue_Idle.res",
+"Walk": "res://resources/animations/Rogue_Walk.res"
+}
+attack_rate = 0.5

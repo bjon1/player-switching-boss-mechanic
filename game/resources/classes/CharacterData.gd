@@ -12,6 +12,13 @@ class_name CharacterData
 @export var character_icon: Texture
 @export var animations: Dictionary 
 
+var attack_rate_timer: Timer = Timer.new()
+
+@export var attack_rate: float:
+	set(value):
+		attack_rate = value
+		attack_rate_timer.set_wait_time(attack_rate)
+
 func attack():
 	print("Attacked")
 	

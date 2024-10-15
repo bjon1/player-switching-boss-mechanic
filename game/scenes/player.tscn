@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://p3ug4nhudlfc"]
+[gd_scene load_steps=38 format=3 uid="uid://p3ug4nhudlfc"]
 
 [ext_resource type="Texture2D" uid="uid://ccfnc1o8jc75c" path="res://assets/Rogue/Attack/Attack1.png" id="1_65ai0"]
 [ext_resource type="Texture2D" uid="uid://cxmaccp0heboa" path="res://assets/Mage/Attack/attack1.png" id="1_g8xrr"]
@@ -27,6 +27,12 @@
 [ext_resource type="Texture2D" uid="uid://bojups01brymb" path="res://assets/Mage/Walk/walk4.png" id="12_jq14x"]
 [ext_resource type="Texture2D" uid="uid://dow55mm33gvm0" path="res://assets/Mage/Walk/walk5.png" id="13_ce6ad"]
 [ext_resource type="Texture2D" uid="uid://ck5b8teihtllc" path="res://assets/Mage/Walk/walk6.png" id="14_obcf7"]
+[ext_resource type="Animation" uid="uid://dv6nphrg2akav" path="res://resources/animations/Mage_Attack.res" id="28_xdail"]
+[ext_resource type="Animation" uid="uid://dbnsp70y14d2s" path="res://resources/animations/Mage_Idle.res" id="29_d32ts"]
+[ext_resource type="Animation" uid="uid://b68evneu6rtqf" path="res://resources/animations/Mage_Walk.res" id="30_6hnb5"]
+[ext_resource type="Animation" uid="uid://daax15dst6otq" path="res://resources/animations/Rogue_Attack.res" id="31_yfogd"]
+[ext_resource type="Animation" uid="uid://dyhv5r8udlqhl" path="res://resources/animations/Rogue_Idle.res" id="32_75m1u"]
+[ext_resource type="Animation" uid="uid://dypcdlepmm6eo" path="res://resources/animations/Rogue_Walk.res" id="33_72me6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tcaca"]
 animations = [{
@@ -149,15 +155,56 @@ animations = [{
 radius = 13.0
 height = 40.0
 
+[sub_resource type="Animation" id="Animation_rbwsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Mage_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6v73"]
+_data = {
+"Mage_Attack": ExtResource("28_xdail"),
+"Mage_Idle": ExtResource("29_d32ts"),
+"Mage_Walk": ExtResource("30_6hnb5"),
+"RESET": SubResource("Animation_rbwsf"),
+"Rogue_Attack": ExtResource("31_yfogd"),
+"Rogue_Idle": ExtResource("32_75m1u"),
+"Rogue_Walk": ExtResource("33_72me6")
+}
+
 [node name="Player" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(22, -53)
 sprite_frames = SubResource("SpriteFrames_tcaca")
-animation = &"Rogue_Attack"
-frame = 6
-frame_progress = 1.0
+animation = &"Mage_Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(22, -53)
 shape = SubResource("CapsuleShape2D_6fbkp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6v73")
+}

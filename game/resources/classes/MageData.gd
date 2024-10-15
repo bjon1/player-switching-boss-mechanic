@@ -11,12 +11,14 @@ func _init():
 	health_regen_delay = 1
 	speed = 100
 	attack_damage = 7
-	#@export var character_icon: Texture
-	#@export var animations: Dictionary 
+	animations = {
+		"Attack": "res://resources/animations/Mage_Attack.res",
+		"Idle": "res://resources/animations/Mage_Idle.res",
+		"Walk": "res://resources/animations/Mage_Walk.res"		
+	}
 	
 
 func attack():
-	
 	print(character_name + " Attacks!")
 	
 
