@@ -4,15 +4,15 @@
 
 [resource]
 script = ExtResource("1_w22ny")
-projectile_speed = 600
 character_name = "Mage"
+projectile_speed = 250
 current_health = 100
 max_health = 100
 health_regen = 3.0
 health_regen_delay = 1.0
 speed = 150.0
 attack_damage = 7
-attack_rate = 0.75
+attack_rate = 0.7
 animations = {
 "Attack": "res://resources/animations/Mage_Attack.res",
 "Idle": "res://resources/animations/Mage_Idle.res",

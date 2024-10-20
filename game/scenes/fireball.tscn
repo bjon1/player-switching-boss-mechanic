@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dxx10t52x4p1t"]
+[gd_scene load_steps=17 format=3 uid="uid://dxx10t52x4p1t"]
 
+[ext_resource type="Script" path="res://scenes/fireball.gd" id="1_0gbpm"]
 [ext_resource type="Texture2D" uid="uid://cd6evtjmi3yxp" path="res://assets/Mage/Fire/fire1.png" id="1_7igm7"]
 [ext_resource type="Texture2D" uid="uid://biwgsr672jyq3" path="res://assets/Mage/Fire/fire2.png" id="2_ehgpq"]
 [ext_resource type="Texture2D" uid="uid://beo1uky88cc6l" path="res://assets/Mage/Fire/fire3.png" id="3_tdda7"]
@@ -148,6 +149,9 @@ radius = 5.98674
 height = 34.0228
 
 [node name="Fireball" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 1000
+script = ExtResource("1_0gbpm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_a6s7y")
@@ -161,3 +165,5 @@ libraries = {
 position = Vector2(0, 8)
 rotation = 1.58357
 shape = SubResource("CapsuleShape2D_qowvm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
