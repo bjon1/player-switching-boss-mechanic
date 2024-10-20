@@ -1,17 +1,19 @@
-extends CharacterData
+extends Resource
 class_name Mage
 
-@export var projectile_speed = 350
+@export var character_name: String = "Mage"
+@export var projectile_speed = 250
+@export var current_health: int  = 100
+@export var max_health: int = 100
+@export var health_regen: float = 3
+@export var health_regen_delay: float = 1
+@export var speed: float = 100
+@export var attack_damage: int = 7
+@export var attack_rate: float = 0.75
+@export var animations: Dictionary 
 
 func _init():
 	print("Initializing Mage")
-	character_name = "Mage"
-	current_health = 99
-	max_health = 100
-	health_regen = 3
-	health_regen_delay = 1
-	speed = 100
-	attack_damage = 7
 	animations = {
 		"Attack": "res://resources/animations/Mage_Attack.res",
 		"Idle": "res://resources/animations/Mage_Idle.res",

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_w22ny")
-projectile_speed = 350
+projectile_speed = 600
 character_name = "Mage"
 current_health = 100
 max_health = 100

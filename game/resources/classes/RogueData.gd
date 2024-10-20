@@ -1,20 +1,22 @@
-extends CharacterData
+extends Resource
 class_name Rogue
 
+@export var character_name: String = "Rogue"
+@export var current_health: int = 150
+@export var max_health: int = 150
+@export var health_regen: float = 4
+@export var health_regen_delay: float = 1
+@export var speed: float = 200
+@export var attack_damage: int = 5	
+@export var attack_rate: float = 0.6
+@export var animations: Dictionary = {
+	"Attack": "res://resources/animations/Rogue_Attack.res",
+	"Idle": "res://resources/animations/Rogue_Idle.res",
+	"Walk": "res://resources/animations/Rogue_Walk.res"		
+}
+
 func _init():
-	print("Initializing Rogue")
-	character_name = "Rogue"
-	current_health = 150
-	max_health = 150
-	health_regen = 4
-	health_regen_delay = 1
-	speed = 200
-	attack_damage = 5	
-	animations = {
-		"Attack": "res://resources/animations/Rogue_Attack.res",
-		"Idle": "res://resources/animations/Rogue_Idle.res",
-		"Walk": "res://resources/animations/Rogue_Walk.res"		
-	}
+	print("Initializing Rogue")	
 	
 func get_attack_data() -> Dictionary:
 	print("Got " + character_name + "attack data")	
