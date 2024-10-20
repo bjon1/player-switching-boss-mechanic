@@ -4,21 +4,33 @@ class_name Character
 
 @onready var animation_player: AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D 
+var attack_rate_timer: Timer
 var input_enabled: bool = true
 var character_datas = []
-var current_character: CharacterData
+var current_character: Resource
 const DECELERATION: float = 50.0 
+
+var looking_left: bool
 
 func _ready():
 	animation_player = $AnimationPlayer
 	animated_sprite = $AnimatedSprite2D
+	
+	# Add a timer to control attack rate
+	attack_rate_timer = Timer.new()
+	attack_rate_timer.one_shot = true
+	add_child(attack_rate_timer)
+	
+	# Load character resources
 	character_datas.append(preload("res://resources/Rogue.tres"))
 	character_datas.append(preload("res://resources/Mage.tres"))
-	current_character = character_datas[0]
-	add_child(character_datas[0].attack_rate_timer)
-	add_child(character_datas[1].attack_rate_timer)
+	current_character = character_datas[1]
+	
+	attack_rate_timer.timeout.connect(_on_attack_rate_timeout)
 
 func _physics_process(_delta: float) -> void:
+	#looking_left = get_global_mouse_position().x < global_position.x
+	#$AnimatedSprite2D.flip_h = looking_left
 	handle_input(get_input())  # Process the input and act accordingly
 	#state_machine()  # Update the animation based on the current state
 	
@@ -40,7 +52,7 @@ func get_input() -> Dictionary:
 	).normalized()
 	
 	# Get attack input (e.g., spacebar)
-	input_data["attack"] = Input.is_action_just_pressed("spacebar")
+	input_data["attack"] = Input.is_action_just_pressed("left_mouse_click")
 	
 	# Check for number key presses (1-9)
 	for i in range(1, 10):  # Loop from 1 to 9
@@ -48,7 +60,6 @@ func get_input() -> Dictionary:
 			input_data["selected_character"] = i  # Store the pressed number
 			print(input_data["selected_character"])
 			
-	
 	return input_data
 
 # Process the gathered input and handle character movement and actions
@@ -61,8 +72,10 @@ func handle_input(input_data: Dictionary) -> void:
 		switch_character(input_data["selected_character"])
 
 func switch_character(character_num: int):
+	# If the character has not been implemented yet
 	if character_num > len(character_datas):
 		return
+	# If the character has already been chosen
 	if character_datas[character_num-1] == current_character:
 		return
 	current_character = character_datas[character_num-1]
@@ -71,31 +84,67 @@ func switch_character(character_num: int):
 	print(character_datas[character_num-1])
 
 func attack():
-	animation_player.play(current_character.character_name + "_Attack")
-	animation_player.queue(current_character.character_name + "_Idle")		
-	current_character.attack()	
-	print("Timer start")
+	if not attack_rate_timer.is_stopped():
+		return #Avoid attacking if still on cooldown
+		
+	# Disable input and start the timer for attack cooldown
 	input_enabled = false
-	current_character.attack_rate_timer.start()
-	await current_character.attack_rate_timer.timeout
+	attack_rate_timer.wait_time = current_character.attack_rate
+	attack_rate_timer.start()
+	
+	# Play attacking animation	
+	animation_player.play(current_character.character_name + "_Attack")
+	
+func launch_projectile(scene: PackedScene, projectile_speed: int):
+	
+	var projectile_inst = scene.instantiate()
+	
+	if projectile_inst is RigidBody2D:
+		projectile_inst.gravity_scale = 0
+	
+	# Update the direction
+	var direction: int = 1
+	if velocity.x > 0:
+		direction = 1
+		projectile_inst.rotation_degrees = 0 # Face Right
+	elif velocity.x < 0:
+		direction = -1
+		projectile_inst.rotation_degrees = 180 # Face Left
+		
+	projectile_inst.position = $ShootingPoint.get_global_position() + Vector2(30 * direction, -10 * direction) 
+		
+	# Apply velocity to the projectile in the facing direction
+	projectile_inst.apply_central_impulse(Vector2(projectile_speed * direction, 0))
+	get_tree().get_root().add_child(projectile_inst)
+	
+	# Play projectile animation
+	var projectile_animation_player = projectile_inst.get_node("AnimationPlayer")
+	projectile_animation_player.queue("Shoot_Fireball")
+
+		
+func _on_attack_rate_timeout():
+	# Get attack data and execute attack logic
+	var attack_data = current_character.get_attack_data()
+	var attack_type: String = attack_data["attack_type"]
+	if attack_type == "projectile":
+		launch_projectile(attack_data["projectile_scene"], attack_data["projectile_speed"])
+	elif attack_type == "melee":
+		print("Melee Attack")
+		pass
+		
 	input_enabled = true
-	print("Timer end")
+	animation_player.play(current_character.character_name + "_Idle")			
 
 # Handle movement and animation based on direction input
 func handle_movement(direction: Vector2) -> void:
 	print("Moving")
-	if direction != Vector2.ZERO:
-		velocity = direction * current_character.speed
-		print("SPEED")
-		print(current_character.speed)
+	velocity = direction * current_character.speed
+	
+	# Flip the player to the direction they are moving in
+	$AnimatedSprite2D.flip_h = direction.x < 0
+
+	if not animation_player.is_playing():
+		animation_player.play(current_character.character_name + "_Walk")
+		animation_player.queue(current_character.character_name + "_Idle")
 		
-		# Flip sprite based on movement direction
-		if direction.x:
-			animated_sprite.flip_h = direction.x < 0
-		if not animation_player.is_playing():
-			animation_player.play(current_character.character_name + "_Walk")
-	else:
-		# Decelerate when not moving
-		velocity.x = move_toward(velocity.x, 0, DECELERATION)
-		velocity.y = move_toward(velocity.y, 0, DECELERATION)
 	move_and_slide()

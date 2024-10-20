@@ -8,16 +8,11 @@ class_name CharacterData
 @export var health_regen_delay: float
 @export var speed: float
 @export var attack_damage: int
+@export var attack_rate: float
 
 @export var character_icon: Texture
 @export var animations: Dictionary 
 
-var attack_rate_timer: Timer = Timer.new()
-
-@export var attack_rate: float:
-	set(value):
-		attack_rate = value
-		attack_rate_timer.set_wait_time(attack_rate)
 
 func attack():
 	print("Attacked")

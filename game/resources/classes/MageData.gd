@@ -1,6 +1,7 @@
 extends CharacterData
 class_name Mage
 
+@export var projectile_speed = 350
 
 func _init():
 	print("Initializing Mage")
@@ -17,11 +18,15 @@ func _init():
 		"Walk": "res://resources/animations/Mage_Walk.res"		
 	}
 	
-
-func attack():
-	print(character_name + " Attacks!")
+func get_attack_data() -> Dictionary:
+	var fireball = load("res://scenes/fireball.tscn")
+	print("Got " + character_name + "attack data")	
+	return {
+		"attack_type": "projectile",
+		"projectile_scene": fireball,
+		"projectile_speed": projectile_speed
+	}
 	
-
 func activate_sp_ability():
 	pass
 	

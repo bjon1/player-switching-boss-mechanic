@@ -4,6 +4,10 @@
 * [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
 * [itch.io](https://jonb1.itch.io/game)
 
+### 2024-10-19 - 7hr Added Fireball Shooting for Mage and Fix Bugs
+* Added a fireball
+* Fix Timer bugs
+
 ### 2024-10-15 - 1hr Added Animations and an Attack Timer
 * Added Animations for Mage and Rogue
 * Added an Attack Timer

@@ -16,9 +16,12 @@ func _init():
 		"Walk": "res://resources/animations/Rogue_Walk.res"		
 	}
 	
-func attack():
-	print(character_name + "Attacks!!")
-
+func get_attack_data() -> Dictionary:
+	print("Got " + character_name + "attack data")	
+	return {
+		"attack_type": "melee",
+	}
+	
 func activate_sp_ability():
 	pass
 	

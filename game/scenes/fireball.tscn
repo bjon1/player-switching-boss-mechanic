@@ -1,0 +1,163 @@
+[gd_scene load_steps=16 format=3 uid="uid://dxx10t52x4p1t"]
+
+[ext_resource type="Texture2D" uid="uid://cd6evtjmi3yxp" path="res://assets/Mage/Fire/fire1.png" id="1_7igm7"]
+[ext_resource type="Texture2D" uid="uid://biwgsr672jyq3" path="res://assets/Mage/Fire/fire2.png" id="2_ehgpq"]
+[ext_resource type="Texture2D" uid="uid://beo1uky88cc6l" path="res://assets/Mage/Fire/fire3.png" id="3_tdda7"]
+[ext_resource type="Texture2D" uid="uid://dp2hnvxfrcdbs" path="res://assets/Mage/Fire/fire4.png" id="4_hxlv3"]
+[ext_resource type="Texture2D" uid="uid://ct2yopic8b1nr" path="res://assets/Mage/Fire/fire5.png" id="5_0hthc"]
+[ext_resource type="Texture2D" uid="uid://isullfvnomie" path="res://assets/Mage/Fire/fire6.png" id="6_ajjmo"]
+[ext_resource type="Texture2D" uid="uid://da3j860emtt1u" path="res://assets/Mage/Fire/fire7.png" id="7_lsvec"]
+[ext_resource type="Texture2D" uid="uid://celi0fqpq6rsc" path="res://assets/Mage/Fire/fire8.png" id="8_n6u5d"]
+[ext_resource type="Texture2D" uid="uid://c1sgkap30v4cw" path="res://assets/Mage/Fire/fire9.png" id="9_cli5l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6s7y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ajjmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_lsvec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_n6u5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cli5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0hthc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hxlv3")
+}],
+"loop": false,
+"name": &"Blast_Fireball",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7igm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ehgpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tdda7")
+}],
+"loop": false,
+"name": &"Shoot_Fireball",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_78wn8"]
+resource_name = "Blast_Fireball"
+length = 1.2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Blast_Fireball"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 4, 0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_e58xr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jnbcy"]
+resource_name = "Shoot_Fireball"
+length = 0.5
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Shoot_Fireball"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqjek"]
+_data = {
+"Blast_Fireball": SubResource("Animation_78wn8"),
+"RESET": SubResource("Animation_e58xr"),
+"Shoot_Fireball": SubResource("Animation_jnbcy")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qowvm"]
+radius = 5.98674
+height = 34.0228
+
+[node name="Fireball" type="RigidBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a6s7y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nqjek")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+rotation = 1.58357
+shape = SubResource("CapsuleShape2D_qowvm")
