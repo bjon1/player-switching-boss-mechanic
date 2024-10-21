@@ -1,0 +1,147 @@
+[gd_scene load_steps=22 format=3 uid="uid://c6gjb0c8188tg"]
+
+[ext_resource type="Texture2D" uid="uid://bumwehaq1mlw1" path="res://assets/Knight/Attack/attack0.png" id="1_eobve"]
+[ext_resource type="Script" path="res://scripts/enemy_knight.gd" id="1_u4yv4"]
+[ext_resource type="Texture2D" uid="uid://w38y3ej1n7an" path="res://assets/Knight/Attack/attack1.png" id="2_s1ks6"]
+[ext_resource type="Texture2D" uid="uid://kcy5xkpon05o" path="res://assets/Knight/Attack/attack2.png" id="3_a2gl3"]
+[ext_resource type="Texture2D" uid="uid://dqcsi7yur4sjw" path="res://assets/Knight/Attack/attack4.png" id="4_cjund"]
+[ext_resource type="Texture2D" uid="uid://dg5gradpk7atp" path="res://assets/Knight/knight.png" id="5_ggu3c"]
+[ext_resource type="Texture2D" uid="uid://vo0513cdhmv" path="res://assets/Knight/Walk/walk1.png" id="6_ck3c6"]
+[ext_resource type="Texture2D" uid="uid://xapelrxkllq1" path="res://assets/Knight/Walk/walk2.png" id="7_dbuks"]
+[ext_resource type="Texture2D" uid="uid://bjmky27esaeuj" path="res://assets/Knight/Walk/walk3.png" id="8_lyw8v"]
+[ext_resource type="Texture2D" uid="uid://2rpkja3xgq5k" path="res://assets/Knight/Walk/walk4.png" id="9_tomlw"]
+[ext_resource type="Texture2D" uid="uid://duloi6ciwjpdg" path="res://assets/Knight/Walk/walk5.png" id="10_816tx"]
+[ext_resource type="Texture2D" uid="uid://cm4tekyp3mbky" path="res://assets/Knight/Walk/walk6.png" id="11_b6jd2"]
+[ext_resource type="Animation" uid="uid://dl113eadswext" path="res://resources/animations/Knight_Walk.res" id="13_8rapp"]
+[ext_resource type="Animation" uid="uid://dn42iuqsnm48f" path="res://resources/animations/Knight_Attack.res" id="14_gmjq5"]
+[ext_resource type="Animation" uid="uid://c2gyqw8rfbm0v" path="res://resources/animations/Knight_Idle.res" id="15_pl1ty"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5l16o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eobve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s1ks6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a2gl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cjund")
+}],
+"loop": false,
+"name": &"Knight_Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ggu3c")
+}],
+"loop": false,
+"name": &"Knight_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ck3c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dbuks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lyw8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tomlw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_816tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_b6jd2")
+}],
+"loop": false,
+"name": &"Knight_Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6j0pm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_15gvx"]
+_data = {
+"Knight_Attack": ExtResource("14_gmjq5"),
+"Knight_Idle": ExtResource("15_pl1ty"),
+"Knight_Walk": ExtResource("13_8rapp"),
+"RESET": SubResource("Animation_6j0pm")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j31hb"]
+radius = 252.873
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gcbu"]
+radius = 19.0
+height = 54.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ak71t"]
+radius = 16.0
+height = 56.0
+
+[node name="EnemyKnight" type="CharacterBody2D"]
+script = ExtResource("1_u4yv4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5l16o")
+animation = &"Knight_Walk"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_15gvx")
+}
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_j31hb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 3)
+shape = SubResource("CapsuleShape2D_3gcbu")
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(19, 2)
+shape = SubResource("CapsuleShape2D_ak71t")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

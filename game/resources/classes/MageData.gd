@@ -8,7 +8,7 @@ class_name Mage
 @export var health_regen: float = 3
 @export var health_regen_delay: float = 1
 @export var speed: float = 100
-@export var attack_damage: int = 7
+@export var attack_damage: int = 10
 @export var attack_rate: float = 0.75
 @export var animations: Dictionary 
 

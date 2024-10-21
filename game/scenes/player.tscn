@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://p3ug4nhudlfc"]
+[gd_scene load_steps=60 format=3 uid="uid://p3ug4nhudlfc"]
 
 [ext_resource type="Texture2D" uid="uid://ccfnc1o8jc75c" path="res://assets/Rogue/Attack/Attack1.png" id="1_65ai0"]
 [ext_resource type="Texture2D" uid="uid://cxmaccp0heboa" path="res://assets/Mage/Attack/attack1.png" id="1_g8xrr"]
@@ -21,18 +21,38 @@
 [ext_resource type="Texture2D" uid="uid://cveuwxh1smsoq" path="res://assets/Rogue/Attack/Attack7.png" id="7_gkjvx"]
 [ext_resource type="Texture2D" uid="uid://b7t2e3r5kglfk" path="res://assets/Mage/Attack/attack7.png" id="7_xp3lp"]
 [ext_resource type="Texture2D" uid="uid://vd8l0hko6ok" path="res://assets/Mage/mage.png" id="8_g7qih"]
+[ext_resource type="Texture2D" uid="uid://uxmm470efip7" path="res://assets/Mage/Death/death1.png" id="8_jil6r"]
 [ext_resource type="Texture2D" uid="uid://gpf73hnyj3uy" path="res://assets/Mage/Walk/walk1.png" id="9_k8j1l"]
+[ext_resource type="Texture2D" uid="uid://dve2170thnyei" path="res://assets/Mage/Death/death2.png" id="9_m172i"]
+[ext_resource type="Texture2D" uid="uid://prm2am7kybgt" path="res://assets/Mage/Death/death3.png" id="10_eel1f"]
 [ext_resource type="Texture2D" uid="uid://c3jvgelhkmyy2" path="res://assets/Mage/Walk/walk2.png" id="10_g0had"]
 [ext_resource type="Texture2D" uid="uid://p48g0kc1432k" path="res://assets/Mage/Walk/walk3.png" id="11_hpec0"]
+[ext_resource type="Texture2D" uid="uid://b0jpnepm0y5a" path="res://assets/Mage/Death/death4.png" id="11_xkrri"]
 [ext_resource type="Texture2D" uid="uid://bojups01brymb" path="res://assets/Mage/Walk/walk4.png" id="12_jq14x"]
+[ext_resource type="Texture2D" uid="uid://ci854a86akwv4" path="res://assets/Mage/Death/death5.png" id="12_stq1x"]
 [ext_resource type="Texture2D" uid="uid://dow55mm33gvm0" path="res://assets/Mage/Walk/walk5.png" id="13_ce6ad"]
+[ext_resource type="Texture2D" uid="uid://dte5j5abbcva4" path="res://assets/Mage/Death/death6.png" id="13_dsxui"]
 [ext_resource type="Texture2D" uid="uid://ck5b8teihtllc" path="res://assets/Mage/Walk/walk6.png" id="14_obcf7"]
+[ext_resource type="Texture2D" uid="uid://ci0v2tg3s5gil" path="res://assets/Mage/Death/death7.png" id="14_rmhjd"]
+[ext_resource type="Texture2D" uid="uid://mad2otieqsrk" path="res://assets/Mage/Death/death8.png" id="15_sbjdx"]
+[ext_resource type="Texture2D" uid="uid://bgu7y6ktbkh58" path="res://assets/Mage/Death/death9.png" id="16_61s4r"]
+[ext_resource type="Texture2D" uid="uid://cr6qw2gafvqom" path="res://assets/Mage/Death/death10.png" id="17_lp6x3"]
 [ext_resource type="Animation" uid="uid://dv6nphrg2akav" path="res://resources/animations/Mage_Attack.res" id="28_xdail"]
 [ext_resource type="Animation" uid="uid://dbnsp70y14d2s" path="res://resources/animations/Mage_Idle.res" id="29_d32ts"]
 [ext_resource type="Animation" uid="uid://b68evneu6rtqf" path="res://resources/animations/Mage_Walk.res" id="30_6hnb5"]
 [ext_resource type="Animation" uid="uid://daax15dst6otq" path="res://resources/animations/Rogue_Attack.res" id="31_yfogd"]
 [ext_resource type="Animation" uid="uid://dyhv5r8udlqhl" path="res://resources/animations/Rogue_Idle.res" id="32_75m1u"]
+[ext_resource type="Texture2D" uid="uid://cwedgngqkkmyb" path="res://assets/Rogue/Death/death1.png" id="32_ju1qa"]
 [ext_resource type="Animation" uid="uid://dypcdlepmm6eo" path="res://resources/animations/Rogue_Walk.res" id="33_72me6"]
+[ext_resource type="Texture2D" uid="uid://dch7smmer31w4" path="res://assets/Rogue/Death/death2.png" id="33_ufv7n"]
+[ext_resource type="Texture2D" uid="uid://dfs3fa1kw3dpb" path="res://assets/Rogue/Death/death3.png" id="34_wmsef"]
+[ext_resource type="Texture2D" uid="uid://uc1kx1hq7p0o" path="res://assets/Rogue/Death/death4.png" id="35_2dj8d"]
+[ext_resource type="Texture2D" uid="uid://btnon5kegjm5x" path="res://assets/Rogue/Death/death5.png" id="36_xwyg6"]
+[ext_resource type="Texture2D" uid="uid://b8jgiu0nvy5bt" path="res://assets/Rogue/Death/death6.png" id="37_kpvoc"]
+[ext_resource type="Texture2D" uid="uid://cda8nshv0ckbm" path="res://assets/Rogue/Death/death7.png" id="38_ycp6u"]
+[ext_resource type="Texture2D" uid="uid://boy4ayui1by57" path="res://assets/Rogue/Death/death8.png" id="39_f4r1t"]
+[ext_resource type="Texture2D" uid="uid://srphpsuxrryq" path="res://assets/Rogue/Death/death9.png" id="40_2e3s0"]
+[ext_resource type="Texture2D" uid="uid://bcbki2qd4xlnr" path="res://assets/Rogue/Death/death10.png" id="41_q7g06"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tcaca"]
 animations = [{
@@ -61,6 +81,41 @@ animations = [{
 "loop": false,
 "name": &"Mage_Attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_jil6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_m172i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_eel1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xkrri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_stq1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dsxui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rmhjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sbjdx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_61s4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_lp6x3")
+}],
+"loop": true,
+"name": &"Mage_Death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -118,6 +173,41 @@ animations = [{
 "loop": false,
 "name": &"Rogue_Attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_ju1qa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ufv7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_wmsef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_2dj8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_xwyg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_kpvoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ycp6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_f4r1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_2e3s0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_q7g06")
+}],
+"loop": true,
+"name": &"Rogue_Death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -182,18 +272,78 @@ tracks/1/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_de1x1"]
+resource_name = "Mage_Death"
+length = 1.5
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Mage_Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_jkq4g"]
+resource_name = "Rogue_Death"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Rogue_Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6v73"]
 _data = {
 "Mage_Attack": ExtResource("28_xdail"),
+"Mage_Death": SubResource("Animation_de1x1"),
 "Mage_Idle": ExtResource("29_d32ts"),
 "Mage_Walk": ExtResource("30_6hnb5"),
 "RESET": SubResource("Animation_rbwsf"),
 "Rogue_Attack": ExtResource("31_yfogd"),
+"Rogue_Death": SubResource("Animation_jkq4g"),
 "Rogue_Idle": ExtResource("32_75m1u"),
 "Rogue_Walk": ExtResource("33_72me6")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tcaca")

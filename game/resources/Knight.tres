@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Knight" load_steps=2 format=3 uid="uid://fyjuujs4rtwx"]
+
+[ext_resource type="Script" path="res://resources/classes/KnightData.gd" id="1_j2k7f"]
+
+[resource]
+script = ExtResource("1_j2k7f")
+character_name = "Knight"
+current_health = 180
+max_health = 180
+health_regen = 5.0
+health_regen_delay = 1.0
+speed = 150.0
+attack_damage = 7
+attack_rate = 0.7
+animations = {
+"Attack": "res://resources/animations/Knight_Attack.res",
+"Idle": "res://resources/animations/Knight_Idle.res",
+"Walk": "res://resources/animations/Knight_Walk.res"
+}

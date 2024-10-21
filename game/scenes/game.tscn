@@ -1,25 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://bm2l3xw1jnje4"]
+[gd_scene load_steps=10 format=3 uid="uid://bm2l3xw1jnje4"]
 
 [ext_resource type="PackedScene" uid="uid://p3ug4nhudlfc" path="res://scenes/player.tscn" id="1_clv6e"]
-[ext_resource type="Script" path="res://actors/Character.gd" id="2_b2m3c"]
 [ext_resource type="Script" path="res://scripts/label.gd" id="3_b8hl0"]
 [ext_resource type="Script" path="res://scripts/PlayerStateMachine.gd" id="4_kw7xk"]
 [ext_resource type="Script" path="res://scripts/PlayerIdle.gd" id="5_ld7dh"]
 [ext_resource type="Script" path="res://scripts/PlayerMovement.gd" id="6_rui4q"]
+[ext_resource type="Script" path="res://actors/Player.gd" id="7_daior"]
 [ext_resource type="Script" path="res://scripts/PlayerAttack.gd" id="7_qga8q"]
+[ext_resource type="PackedScene" uid="uid://c6gjb0c8188tg" path="res://scenes/EnemyKnight.tscn" id="8_ude8b"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n365k"]
+distance = -2.0
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(91, 67)
+position = Vector2(129, 63)
+zoom = Vector2(1.5, 1.5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(55, 390)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2, 1)
+position = Vector2(69, -116)
 shape = SubResource("WorldBoundaryShape2D_n365k")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
@@ -27,7 +30,7 @@ position = Vector2(-485, 35)
 rotation = 1.57079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(2, 1)
+position = Vector2(36.0015, -233)
 shape = SubResource("WorldBoundaryShape2D_n365k")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
@@ -35,7 +38,7 @@ position = Vector2(33, -256)
 rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(2, 1)
+position = Vector2(-119, -103)
 shape = SubResource("WorldBoundaryShape2D_n365k")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
@@ -43,7 +46,7 @@ position = Vector2(664, 70)
 rotation = -1.57079
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(2, 1)
+position = Vector2(0.99906, -150)
 shape = SubResource("WorldBoundaryShape2D_n365k")
 
 [node name="Label" type="Label" parent="."]
@@ -66,4 +69,8 @@ script = ExtResource("6_rui4q")
 script = ExtResource("7_qga8q")
 
 [node name="Player" parent="." instance=ExtResource("1_clv6e")]
-script = ExtResource("2_b2m3c")
+position = Vector2(318, 50)
+script = ExtResource("7_daior")
+
+[node name="EnemyKnight" parent="." instance=ExtResource("8_ude8b")]
+position = Vector2(-79, 73)
