@@ -8,7 +8,7 @@ class_name Knight
 @export var health_regen_delay: float = 1
 @export var speed: float = 150
 @export var attack_damage: int = 7
-@export var attack_rate: float = 0.7
+@export var attack_rate: float = 0.8
 @export var animations: Dictionary = {
 	"Attack": "res://resources/animations/Knight_Attack.res",
 	"Idle": "res://resources/animations/Knight_Idle.res",

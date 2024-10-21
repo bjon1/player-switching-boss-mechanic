@@ -28,14 +28,14 @@ func status_checker(delta):
 		attack()
 	
 func handle_movement(delta):
-	if position.distance_to(player.global_position) > 50:
+	if position.distance_to(player.global_position) > 40:
 		
 		# Walk to the player
 		var distance_to_player = (player.global_position - position).normalized()
 		position += distance_to_player * (data.speed - 80) * delta
 		
 		# Play walking animation
-		animation_player.play(data.character_name + "_Walk")
+		animation_player.queue(data.character_name + "_Walk")
 		
 		# Flip the enemy based on the movement direction
 		if distance_to_player.x > 0 and scale.x < 0:
@@ -60,7 +60,8 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		print("Detection Area Exited")
 		player = null
 		collision_data["in_detection_area"] = false
-	
+	animation_player.play(data.character_name + "_Idle")	
+		
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body == player:
 		print("Attack Area Entered")
@@ -70,7 +71,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 	if body == player:
 		print("Attack Area Exited")
 		collision_data["in_attack_area"] = false
-		animation_player.stop()
+	animation_player.play(data.character_name + "_Idle")	
 	
 func attack():
 	

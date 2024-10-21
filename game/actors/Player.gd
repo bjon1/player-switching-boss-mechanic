@@ -130,11 +130,10 @@ func launch_projectile(scene: PackedScene, projectile_speed: int):
 	projectile_animation_player.queue("Shoot_Fireball")
 
 func _on_death_timeout():
-	input_enabled = false
-	
 	#TO DO write a function that can choose the next closest alive character after death
 	switch_character(1)
-	queue_free()
+	input_enabled = true
+	
 		
 func _on_attack_rate_timeout():
 	# Get attack data and execute attack logic
@@ -164,11 +163,14 @@ func handle_movement(direction: Vector2) -> void:
 	move_and_slide()
 	
 func take_damage(damage: int):
+	if not death_timer.is_stopped():
+		print("Dying, no more damage taken")
+		return
 	current_character.current_health -= damage
 	print(current_character.current_health)
 	if current_character.current_health <= 0:
 		animation_player.play(current_character.character_name + "_Death")
-		queue_free()
+		input_enabled = false
 		# Start a death timer
 		death_timer.wait_time = 1.5
 		death_timer.start()
