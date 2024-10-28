@@ -37,7 +37,8 @@ animations = [{
 [node name="Fireblast" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_fcme0")
 autoplay = "default"
-frame_progress = 0.0669644
+frame = 5
+frame_progress = 1.0
 speed_scale = 2.0
 script = ExtResource("7_uipql")
 

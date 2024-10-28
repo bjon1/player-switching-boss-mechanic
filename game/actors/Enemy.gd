@@ -1,6 +1,7 @@
 extends Character
 class_name Enemy
 
+
 func _ready():
 	super._ready()
 	attack_rate_timer.timeout.connect(_on_enemy_attack_rate_timeout)	
@@ -8,6 +9,8 @@ func _ready():
 	
 func _on_enemy_death_timeout():
 	_on_death_timeout()
+	SignalBus.enemy_died.emit(current_character) 
+	queue_free()
 
 func _on_enemy_attack_rate_timeout():
 	_on_attack_rate_timeout()

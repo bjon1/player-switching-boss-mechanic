@@ -4,8 +4,9 @@
 * [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
 * [itch.io](https://jonb1.itch.io/game)
 
-### 2024-10-28 2hr Implement Base Character Class to Enemy
+### 2024-10-28 3.5hr Implement Base Character Class to Enemy
 * Enemy now uses Base Character Class
+* Enemy Character Unlocked After Defeating
 
 ### 2024-10-27 2hr Create Base Character Class
 * Create Base Character Class 

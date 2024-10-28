@@ -13,6 +13,7 @@ func _ready():
 	current_character = character_datas[0]
 	attack_rate_timer.timeout.connect(_on_player_attack_rate_timeout) 
 	death_timer.timeout.connect(_on_player_death_timeout)
+	SignalBus.enemy_died.connect(_on_enemy_died)
 
 func _physics_process(_delta: float) -> void:
 	#looking_left = get_global_mouse_position().x < global_position.x
@@ -20,9 +21,10 @@ func _physics_process(_delta: float) -> void:
 	handle_input(get_input())  # Process the input and act accordingly
 	#state_machine()  # Update the animation based on the current state
 	
-func add_new_character(Character: Resource):
-	character_datas.append(Character)
-	
+func add_new_character(character_data: Resource):
+	character_datas.append(character_data)
+	print("New Character Unlocked!")	
+
 # Gather input data from the player
 func get_input() -> Dictionary:
 	var input_data = {
@@ -109,4 +111,7 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 		body = null
 		collision_data["in_attack_area"] = false
 		print("PLAYER's Attack Area Exited")
+	
+func _on_enemy_died(character_data: Resource):
+	add_new_character(character_data)
 	

@@ -18,6 +18,8 @@ var character_datas = [
 ]
 var movement_enabled: bool = true
 
+
+
 func _ready():
 	animation_player = get_node("AnimationPlayer")
 	animated_sprite = get_node("AnimationSprite2D")
@@ -103,11 +105,13 @@ func take_damage(damage: int):
 	current_character.current_health -= damage
 	print("Current Health: ", current_character.current_health)
 	if current_character.current_health <= 0:
+		print("dying")
 		die()
 
 func die():
 	movement_enabled = false
 	animation_player.play(current_character.character_name + "_Death")
+	print("initiate dying process")
 	# Start a death timer
 	death_timer.wait_time = 1.2
 	death_timer.start()
