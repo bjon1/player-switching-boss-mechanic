@@ -6,7 +6,7 @@
 script = ExtResource("1_w22ny")
 character_name = "Mage"
 projectile_speed = 250
-current_health = 100
+current_health = 125
 max_health = 100
 health_regen = 3.0
 health_regen_delay = 1.0

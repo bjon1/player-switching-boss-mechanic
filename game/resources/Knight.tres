@@ -5,8 +5,8 @@
 [resource]
 script = ExtResource("1_j2k7f")
 character_name = "Knight"
-current_health = 180
-max_health = 180
+current_health = 160
+max_health = 160
 health_regen = 5.0
 health_regen_delay = 1.0
 speed = 150.0

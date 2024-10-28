@@ -3,12 +3,20 @@ class_name Character
 
 @onready var animation_player: AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D 
+var collision_data = {
+	"in_detection_area": false,
+	"in_attack_area": false
+}
 var attack_rate_timer: Timer
 var death_timer: Timer
 var adversary: CharacterBody2D
-var adversary_in_attack_range: bool
 var current_character: Resource
-var character_datas = [ preload("res://resources/Rogue.tres"), preload("res://resources/Mage.tres") ]
+var character_datas = [ 
+	preload("res://resources/Rogue.tres"), 
+	preload("res://resources/Mage.tres"),
+	preload("res://resources/Knight.tres")
+]
+var movement_enabled: bool = true
 
 func _ready():
 	animation_player = get_node("AnimationPlayer")
@@ -31,9 +39,11 @@ func _on_attack_rate_timeout():
 	var attack_data = current_character.get_attack_data()
 	if attack_data["attack_type"] == "projectile":
 		launch_projectile(attack_data["projectile_scene"], attack_data["projectile_speed"])
-	if adversary_in_attack_range: # If the player is still in attacking range
+	if collision_data["in_attack_area"]: # If the player is still in attacking range
 		adversary.take_damage(current_character.attack_damage)
-	animation_player.play(current_character.character_name + "_Idle")		
+	animation_player.play(current_character.character_name + "_Idle")	
+	# Allow movement again
+	movement_enabled = true	
 
 func launch_projectile(scene: PackedScene, projectile_speed: int):
 	# Instantiate Projectile
@@ -61,6 +71,7 @@ func launch_projectile(scene: PackedScene, projectile_speed: int):
 func _on_death_timeout():
 	while current_character in character_datas:
 		character_datas.erase(current_character)
+	movement_enabled = true
 	
 func switch_character(character_num: int):
 	print("Switch Character", str(character_num))
@@ -76,6 +87,7 @@ func switch_character(character_num: int):
 	print(character_datas[character_num-1])
 
 func attack():
+	movement_enabled = false
 	if not attack_rate_timer.is_stopped():
 		return # Avoid attacking if still on cooldown
 	# Start the attack rate timer
@@ -86,20 +98,22 @@ func attack():
 
 func take_damage(damage: int):
 	if not death_timer.is_stopped():
-		print("PLAYER Dying, no more damage taken")
+		print("Character is dying, not taking anymore damage")
 		return
 	current_character.current_health -= damage
-	print(current_character.current_health)
+	print("Current Health: ", current_character.current_health)
 	if current_character.current_health <= 0:
-		animation_player.play(current_character.character_name + "_Death")
-		# Start a death timer
-		death_timer.wait_time = 1.5
-		death_timer.start()
+		die()
 
-'''
-	
-func take_damage():
-	
 func die():
-'''
-	
+	movement_enabled = false
+	animation_player.play(current_character.character_name + "_Death")
+	# Start a death timer
+	death_timer.wait_time = 1.2
+	death_timer.start()
+
+
+func move_toward(magnitude: int, direction: int):
+	if not movement_enabled:
+		return
+	# TODO not implemented yet, makes code more modular
