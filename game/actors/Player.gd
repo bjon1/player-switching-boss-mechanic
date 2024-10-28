@@ -45,8 +45,8 @@ func get_input() -> Dictionary:
 	# Get attack input (e.g., spacebar)
 	input_data["attack"] = Input.is_action_just_pressed("left_mouse_click")
 	
-	# Check for number key presses (1-9)
-	for i in range(1, 4):  # Loop from 1 to 9
+	# Check for number key presses (1 to # of Characters Available)
+	for i in range(1, len(character_datas) + 1): 
 		if Input.is_action_just_pressed(str(i)):  # Check if the key for 'i' is pressed
 			input_data["selected_character"] = i  # Store the pressed number
 			print(input_data["selected_character"])			
