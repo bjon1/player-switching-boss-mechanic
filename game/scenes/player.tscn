@@ -1,5 +1,6 @@
-[gd_scene load_steps=60 format=3 uid="uid://p3ug4nhudlfc"]
+[gd_scene load_steps=62 format=3 uid="uid://p3ug4nhudlfc"]
 
+[ext_resource type="Script" path="res://actors/Player.gd" id="1_1rvn0"]
 [ext_resource type="Texture2D" uid="uid://ccfnc1o8jc75c" path="res://assets/Rogue/Attack/Attack1.png" id="1_65ai0"]
 [ext_resource type="Texture2D" uid="uid://cxmaccp0heboa" path="res://assets/Mage/Attack/attack1.png" id="1_g8xrr"]
 [ext_resource type="Texture2D" uid="uid://cogqlritawn41" path="res://assets/Rogue/Walk/walk1.png" id="1_q3k7b"]
@@ -245,33 +246,6 @@ animations = [{
 radius = 16.0
 height = 60.0
 
-[sub_resource type="Animation" id="Animation_rbwsf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Mage_Attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_de1x1"]
 resource_name = "Mage_Death"
 length = 1.5
@@ -299,6 +273,33 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_rbwsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Mage_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_jkq4g"]
@@ -342,8 +343,14 @@ _data = {
 "Rogue_Walk": ExtResource("33_72me6")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dpgia"]
+radius = 30.0
+height = 60.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
+slide_on_ceiling = false
+script = ExtResource("1_1rvn0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tcaca")
@@ -360,3 +367,12 @@ libraries = {
 
 [node name="ShootingPoint" type="Node2D" parent="."]
 position = Vector2(0, 7)
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(10, 1)
+shape = SubResource("CapsuleShape2D_dpgia")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

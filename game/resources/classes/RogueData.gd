@@ -7,7 +7,7 @@ class_name Rogue
 @export var health_regen: float = 4
 @export var health_regen_delay: float = 1
 @export var speed: float = 200
-@export var attack_damage: int = 5	
+@export var attack_damage: int = 30
 @export var attack_rate: float = 0.6
 @export var animations: Dictionary = {
 	"Attack": "res://resources/animations/Rogue_Attack.res",

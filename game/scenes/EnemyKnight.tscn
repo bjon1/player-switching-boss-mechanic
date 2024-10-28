@@ -113,7 +113,8 @@ height = 54.0
 radius = 20.0
 height = 56.0
 
-[node name="EnemyKnight" type="CharacterBody2D"]
+[node name="EnemyKnight" type="CharacterBody2D" groups=["enemy"]]
+slide_on_ceiling = false
 script = ExtResource("1_u4yv4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

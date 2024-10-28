@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_57jjt")
 character_name = "Rogue"
-current_health = 125
-max_health = 125
-health_regen = 2.0
+current_health = 150
+max_health = 150
+health_regen = 4.0
 health_regen_delay = 1.0
 speed = 200.0
-attack_damage = 5
+attack_damage = 30
 attack_rate = 0.6
 animations = {
 "Attack": "res://resources/animations/Rogue_Attack.res",
