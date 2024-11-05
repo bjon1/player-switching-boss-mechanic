@@ -9,6 +9,7 @@ var collision_data = {
 }
 var attack_rate_timer: Timer
 var death_timer: Timer
+var ultimate_timer: Timer
 var adversary: CharacterBody2D
 var current_character: Resource
 var character_datas = [ 
@@ -34,6 +35,12 @@ func _ready():
 	death_timer.one_shot = true
 	add_child(death_timer)
 	
+	ultimate_timer = Timer.new()
+	ultimate_timer.one_shot = true
+	add_child(ultimate_timer)
+	
+func _on_ultimate_timeout():
+	animation_player.stop()
 	
 # Implemented in the children 
 func _on_attack_rate_timeout():
@@ -97,6 +104,14 @@ func attack():
 	attack_rate_timer.start()
 	# Play attacking animation	
 	animation_player.play(current_character.character_name + "_Attack")
+	
+func ultimate_ability():
+	ultimate_timer.wait_time = 3
+	ultimate_timer.start()
+	animation_player.queue(current_character.character_name + "_Run")
+	animation_player.queue(current_character.character_name + "_Run")
+	animation_player.queue(current_character.character_name + "_Run")
+	
 
 func take_damage(damage: int):
 	if not death_timer.is_stopped():

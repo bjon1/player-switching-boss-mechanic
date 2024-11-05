@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://p3ug4nhudlfc"]
+[gd_scene load_steps=85 format=3 uid="uid://p3ug4nhudlfc"]
 
 [ext_resource type="Script" path="res://actors/Player.gd" id="1_1rvn0"]
 [ext_resource type="Texture2D" uid="uid://ccfnc1o8jc75c" path="res://assets/Rogue/Attack/Attack1.png" id="1_65ai0"]
@@ -65,6 +65,14 @@
 [ext_resource type="Texture2D" uid="uid://boy4ayui1by57" path="res://assets/Rogue/Death/death8.png" id="39_f4r1t"]
 [ext_resource type="Texture2D" uid="uid://srphpsuxrryq" path="res://assets/Rogue/Death/death9.png" id="40_2e3s0"]
 [ext_resource type="Texture2D" uid="uid://bcbki2qd4xlnr" path="res://assets/Rogue/Death/death10.png" id="41_q7g06"]
+[ext_resource type="Texture2D" uid="uid://bj3t2p6ihkaii" path="res://assets/Rogue/Run/run1.png" id="55_yjt0e"]
+[ext_resource type="Texture2D" uid="uid://ddacy0elgb3wi" path="res://assets/Rogue/Run/run2.png" id="56_jt88o"]
+[ext_resource type="Texture2D" uid="uid://bu381slyqst01" path="res://assets/Rogue/Run/run3.png" id="57_hewh6"]
+[ext_resource type="Texture2D" uid="uid://bh5cj26a0mwfr" path="res://assets/Rogue/Run/run4.png" id="58_toogq"]
+[ext_resource type="Texture2D" uid="uid://dcgefdmc4sfkg" path="res://assets/Rogue/Run/run5.png" id="59_k2r5v"]
+[ext_resource type="Texture2D" uid="uid://dm2i2j31a8abm" path="res://assets/Rogue/Run/run6.png" id="60_whqur"]
+[ext_resource type="Texture2D" uid="uid://bkthqstpxyn3p" path="res://assets/Rogue/Run/run7.png" id="61_wsht5"]
+[ext_resource type="Texture2D" uid="uid://ogr2omak5gve" path="res://assets/Rogue/Run/run8.png" id="62_6rxyi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tcaca"]
 animations = [{
@@ -284,6 +292,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("55_yjt0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_jt88o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_hewh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_toogq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_k2r5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_whqur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_wsht5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_6rxyi")
+}],
+"loop": true,
+"name": &"Rogue_Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("1_q3k7b")
 }, {
 "duration": 1.0,
@@ -309,6 +346,92 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6fbkp"]
 radius = 16.0
 height = 60.0
+
+[sub_resource type="Animation" id="Animation_o6178"]
+resource_name = "Knight_Attack"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3q2gb"]
+resource_name = "Knight_Idle"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uslr7"]
+resource_name = "Knight_Walk"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 3, 4, 5]
+}
 
 [sub_resource type="Animation" id="Animation_de1x1"]
 resource_name = "Mage_Death"
@@ -394,10 +517,10 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_o6178"]
-resource_name = "Knight_Attack"
-length = 0.6
-step = 0.05
+[sub_resource type="Animation" id="Animation_oa5jd"]
+resource_name = "Rogue_Run"
+length = 1.13
+step = 0.13
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -408,7 +531,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Knight_Attack"]
+"values": [&"Rogue_Run"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -417,67 +540,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13, 0.26, 0.39, 0.52, 0.65, 0.78, 0.91),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_uslr7"]
-resource_name = "Knight_Walk"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Knight_Walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 3, 4, 5]
-}
-
-[sub_resource type="Animation" id="Animation_3q2gb"]
-resource_name = "Knight_Idle"
-length = 0.05
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Knight_Idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6v73"]
@@ -493,6 +559,7 @@ _data = {
 "Rogue_Attack": ExtResource("31_yfogd"),
 "Rogue_Death": SubResource("Animation_jkq4g"),
 "Rogue_Idle": ExtResource("32_75m1u"),
+"Rogue_Run": SubResource("Animation_oa5jd"),
 "Rogue_Walk": ExtResource("33_72me6")
 }
 

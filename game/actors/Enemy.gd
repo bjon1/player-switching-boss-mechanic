@@ -6,6 +6,16 @@ func _ready():
 	super._ready()
 	attack_rate_timer.timeout.connect(_on_enemy_attack_rate_timeout)	
 	death_timer.timeout.connect(_on_enemy_death_timeout)
+	SignalBus.ultimate_started.connect(_on_adversary_ultimate_started)
+	SignalBus.ultimate_ended.connect(_on_adversary_ultimate_ended)
+	
+func _on_adversary_ultimate_started():
+	movement_enabled = false
+	print("received ultimate started")
+	
+func _on_adversary_ultimate_ended():
+	movement_enabled = true
+	print("received ultimate ended")
 	
 func _on_enemy_death_timeout():
 	_on_death_timeout()
@@ -25,10 +35,10 @@ func status_checker(delta):
 		attack()
 	
 func handle_movement(delta):
-	if position.distance_to(adversary.global_position) > 40:
+	if not movement_enabled:
+		return
 		
-		if not movement_enabled:
-			return
+	if position.distance_to(adversary.global_position) > 40:
 		
 		# Walk to the player
 		var distance_to_player = (adversary.global_position - position).normalized()
@@ -44,6 +54,8 @@ func handle_movement(delta):
 			scale.x = -abs(scale.x)
 
 func enemy_attack():
+	if not movement_enabled:
+		return
 	attack()
 	
 func enemy_take_damage(damage: int):

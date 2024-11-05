@@ -13,6 +13,7 @@ func _ready():
 	current_character = character_datas[0]
 	attack_rate_timer.timeout.connect(_on_player_attack_rate_timeout) 
 	death_timer.timeout.connect(_on_player_death_timeout)
+	ultimate_timer.timeout.connect(_on_player_ultimate_timeout)
 	SignalBus.enemy_died.connect(_on_enemy_died)
 
 func _physics_process(_delta: float) -> void:
@@ -30,6 +31,7 @@ func get_input() -> Dictionary:
 	var input_data = {
 		"direction": Vector2.ZERO,
 		"attack": false,
+		"ultimate": null,
 		"selected_character": null
 	}
 
@@ -45,6 +47,9 @@ func get_input() -> Dictionary:
 	# Get attack input (e.g., spacebar)
 	input_data["attack"] = Input.is_action_just_pressed("left_mouse_click")
 	
+	# Get ultimate input
+	input_data["ultimate"] = Input.is_action_just_pressed("ultimate_key")
+	
 	# Check for number key presses (1 to # of Characters Available)
 	for i in range(1, len(character_datas) + 1): 
 		if Input.is_action_just_pressed(str(i)):  # Check if the key for 'i' is pressed
@@ -55,7 +60,9 @@ func get_input() -> Dictionary:
 
 # Process the gathered input and handle character movement and actions
 func handle_input(input_data: Dictionary) -> void:
-	if input_data["attack"]:
+	if input_data["ultimate"]:
+		player_ultimate_ability()
+	elif input_data["attack"]:
 		player_attack()			
 	elif input_data["direction"] != Vector2.ZERO:
 		handle_movement(get_input()["direction"]) 
@@ -64,6 +71,16 @@ func handle_input(input_data: Dictionary) -> void:
 		
 func player_attack():
 	attack()
+	
+func player_ultimate_ability():
+	ultimate_ability()
+	SignalBus.ultimate_started.emit()
+	print("ultimate ability started")
+	
+func _on_player_ultimate_timeout():
+	_on_ultimate_timeout()
+	SignalBus.ultimate_ended.emit()
+	print("ultimate ended")
 	
 func _on_player_attack_rate_timeout():
 	var attack_type = _on_attack_rate_timeout()
