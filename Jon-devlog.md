@@ -4,10 +4,13 @@
 * [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
 * [itch.io](https://jonb1.itch.io/game)
 
-### 2024-11-16 2hr Refactor Movement
+### 2024-11-16 5hr Refactor Movement, Add Jump/Gravity, Add Basic Map, Add Enemy Teleport
 * Movement is now handled more gracefully both technically and visually
 * There is now an acceleration and deceleration, making a move pleasurable movement experience
-* Only implemented on the Player
+* Movement updates are only implemented on the Player
+* The player can now jump and fall due to gravity
+* Created a basic map with platforms and boundaries 
+* Enemy can randomly teleport closer to the player if it passes a certain radius
 
 ### 2024-11-04 1hr Add Cloak Ability to Rogue
 * Rogue can now invoke cloak ability by pressing R
