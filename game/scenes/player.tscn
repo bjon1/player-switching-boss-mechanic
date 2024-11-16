@@ -345,7 +345,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6fbkp"]
 radius = 16.0
-height = 60.0
+height = 54.0
 
 [sub_resource type="Animation" id="Animation_o6178"]
 resource_name = "Knight_Attack"
@@ -577,7 +577,7 @@ sprite_frames = SubResource("SpriteFrames_tcaca")
 animation = &"Mage_Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 6)
+position = Vector2(-2, 1)
 shape = SubResource("CapsuleShape2D_6fbkp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

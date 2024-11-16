@@ -1,0 +1,627 @@
+[gd_scene load_steps=87 format=3 uid="uid://bm2l3xw1jnje4"]
+
+[ext_resource type="Script" path="res://actors/Player.gd" id="2_76pp7"]
+[ext_resource type="Texture2D" uid="uid://bumwehaq1mlw1" path="res://assets/Knight/Attack/attack0.png" id="3_0ss10"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="3_b8hl0"]
+[ext_resource type="Texture2D" uid="uid://w38y3ej1n7an" path="res://assets/Knight/Attack/attack1.png" id="4_l5vdb"]
+[ext_resource type="Texture2D" uid="uid://kcy5xkpon05o" path="res://assets/Knight/Attack/attack2.png" id="5_xvmak"]
+[ext_resource type="Texture2D" uid="uid://dqcsi7yur4sjw" path="res://assets/Knight/Attack/attack4.png" id="6_unqmk"]
+[ext_resource type="Texture2D" uid="uid://dg5gradpk7atp" path="res://assets/Knight/knight.png" id="7_ak3fu"]
+[ext_resource type="Texture2D" uid="uid://vo0513cdhmv" path="res://assets/Knight/Walk/walk1.png" id="8_k0v0p"]
+[ext_resource type="PackedScene" uid="uid://c6gjb0c8188tg" path="res://scenes/EnemyKnight.tscn" id="8_ude8b"]
+[ext_resource type="Texture2D" uid="uid://xapelrxkllq1" path="res://assets/Knight/Walk/walk2.png" id="9_ksrxj"]
+[ext_resource type="Texture2D" uid="uid://bjmky27esaeuj" path="res://assets/Knight/Walk/walk3.png" id="10_xvxyr"]
+[ext_resource type="Texture2D" uid="uid://2rpkja3xgq5k" path="res://assets/Knight/Walk/walk4.png" id="11_02qm1"]
+[ext_resource type="Texture2D" uid="uid://duloi6ciwjpdg" path="res://assets/Knight/Walk/walk5.png" id="12_6qx2d"]
+[ext_resource type="Texture2D" uid="uid://cm4tekyp3mbky" path="res://assets/Knight/Walk/walk6.png" id="13_ugitl"]
+[ext_resource type="Texture2D" uid="uid://cxmaccp0heboa" path="res://assets/Mage/Attack/attack1.png" id="14_u8jio"]
+[ext_resource type="Texture2D" uid="uid://dcwiffbqi7r8y" path="res://assets/Mage/Attack/attack2.png" id="15_utaf6"]
+[ext_resource type="Texture2D" uid="uid://bobc7wx0jyswh" path="res://assets/Mage/Attack/attack3.png" id="16_151dj"]
+[ext_resource type="Texture2D" uid="uid://cjkf38p5qjj7e" path="res://assets/Mage/Attack/attack4.png" id="17_fpw5a"]
+[ext_resource type="Texture2D" uid="uid://cdwq21knajjre" path="res://assets/Mage/Attack/attack5.png" id="18_iqypl"]
+[ext_resource type="Texture2D" uid="uid://dnr4i5qvviavv" path="res://assets/Mage/Attack/attack6.png" id="19_ue4at"]
+[ext_resource type="Texture2D" uid="uid://b7t2e3r5kglfk" path="res://assets/Mage/Attack/attack7.png" id="20_c47g0"]
+[ext_resource type="Texture2D" uid="uid://uxmm470efip7" path="res://assets/Mage/Death/death1.png" id="21_fh54r"]
+[ext_resource type="Texture2D" uid="uid://dve2170thnyei" path="res://assets/Mage/Death/death2.png" id="22_pxxlm"]
+[ext_resource type="Texture2D" uid="uid://prm2am7kybgt" path="res://assets/Mage/Death/death3.png" id="23_48iud"]
+[ext_resource type="Texture2D" uid="uid://b0jpnepm0y5a" path="res://assets/Mage/Death/death4.png" id="24_6ya5f"]
+[ext_resource type="Texture2D" uid="uid://ci854a86akwv4" path="res://assets/Mage/Death/death5.png" id="25_m44wk"]
+[ext_resource type="Texture2D" uid="uid://dte5j5abbcva4" path="res://assets/Mage/Death/death6.png" id="26_0fjvb"]
+[ext_resource type="Texture2D" uid="uid://ci0v2tg3s5gil" path="res://assets/Mage/Death/death7.png" id="27_yn8nr"]
+[ext_resource type="Texture2D" uid="uid://mad2otieqsrk" path="res://assets/Mage/Death/death8.png" id="28_0jax3"]
+[ext_resource type="Texture2D" uid="uid://bgu7y6ktbkh58" path="res://assets/Mage/Death/death9.png" id="29_6k3pl"]
+[ext_resource type="Texture2D" uid="uid://cr6qw2gafvqom" path="res://assets/Mage/Death/death10.png" id="30_giubx"]
+[ext_resource type="Texture2D" uid="uid://vd8l0hko6ok" path="res://assets/Mage/mage.png" id="31_u3x1t"]
+[ext_resource type="Texture2D" uid="uid://gpf73hnyj3uy" path="res://assets/Mage/Walk/walk1.png" id="32_hl6u6"]
+[ext_resource type="Texture2D" uid="uid://c3jvgelhkmyy2" path="res://assets/Mage/Walk/walk2.png" id="33_rymun"]
+[ext_resource type="Texture2D" uid="uid://p48g0kc1432k" path="res://assets/Mage/Walk/walk3.png" id="34_wdytc"]
+[ext_resource type="Texture2D" uid="uid://bojups01brymb" path="res://assets/Mage/Walk/walk4.png" id="35_dbvgr"]
+[ext_resource type="Texture2D" uid="uid://dow55mm33gvm0" path="res://assets/Mage/Walk/walk5.png" id="36_s6868"]
+[ext_resource type="Texture2D" uid="uid://ck5b8teihtllc" path="res://assets/Mage/Walk/walk6.png" id="37_swian"]
+[ext_resource type="Texture2D" uid="uid://ccfnc1o8jc75c" path="res://assets/Rogue/Attack/Attack1.png" id="38_d3fyh"]
+[ext_resource type="Texture2D" uid="uid://74basicrgf3g" path="res://assets/Rogue/Attack/Attack2.png" id="39_0wtj7"]
+[ext_resource type="Texture2D" uid="uid://c4yelt2d6f8lf" path="res://assets/Rogue/Attack/Attack3.png" id="40_y8svk"]
+[ext_resource type="Texture2D" uid="uid://corlhvt4l4f0v" path="res://assets/Rogue/Attack/Attack4.png" id="41_g81x6"]
+[ext_resource type="Texture2D" uid="uid://cg5wjxbkc4yph" path="res://assets/Rogue/Attack/Attack5.png" id="42_2sdop"]
+[ext_resource type="Texture2D" uid="uid://b5tsg4cjya2lw" path="res://assets/Rogue/Attack/Attack6.png" id="43_jbgex"]
+[ext_resource type="Texture2D" uid="uid://cveuwxh1smsoq" path="res://assets/Rogue/Attack/Attack7.png" id="44_h825v"]
+[ext_resource type="Texture2D" uid="uid://cwedgngqkkmyb" path="res://assets/Rogue/Death/death1.png" id="45_qsrar"]
+[ext_resource type="Texture2D" uid="uid://dch7smmer31w4" path="res://assets/Rogue/Death/death2.png" id="46_ltnfb"]
+[ext_resource type="Texture2D" uid="uid://dfs3fa1kw3dpb" path="res://assets/Rogue/Death/death3.png" id="47_n5php"]
+[ext_resource type="Texture2D" uid="uid://uc1kx1hq7p0o" path="res://assets/Rogue/Death/death4.png" id="48_x8c0n"]
+[ext_resource type="Texture2D" uid="uid://btnon5kegjm5x" path="res://assets/Rogue/Death/death5.png" id="49_gpols"]
+[ext_resource type="Texture2D" uid="uid://b8jgiu0nvy5bt" path="res://assets/Rogue/Death/death6.png" id="50_8kbt5"]
+[ext_resource type="Texture2D" uid="uid://cda8nshv0ckbm" path="res://assets/Rogue/Death/death7.png" id="51_wbgm3"]
+[ext_resource type="Texture2D" uid="uid://boy4ayui1by57" path="res://assets/Rogue/Death/death8.png" id="52_0iidw"]
+[ext_resource type="Texture2D" uid="uid://srphpsuxrryq" path="res://assets/Rogue/Death/death9.png" id="53_lvka7"]
+[ext_resource type="Texture2D" uid="uid://bcbki2qd4xlnr" path="res://assets/Rogue/Death/death10.png" id="54_cuuuc"]
+[ext_resource type="Texture2D" uid="uid://cogqlritawn41" path="res://assets/Rogue/Walk/walk1.png" id="55_3vfgv"]
+[ext_resource type="Texture2D" uid="uid://bj3t2p6ihkaii" path="res://assets/Rogue/Run/run1.png" id="56_el10t"]
+[ext_resource type="Texture2D" uid="uid://ddacy0elgb3wi" path="res://assets/Rogue/Run/run2.png" id="57_yldlj"]
+[ext_resource type="Texture2D" uid="uid://bu381slyqst01" path="res://assets/Rogue/Run/run3.png" id="58_kexqn"]
+[ext_resource type="Texture2D" uid="uid://bh5cj26a0mwfr" path="res://assets/Rogue/Run/run4.png" id="59_t2xxo"]
+[ext_resource type="Texture2D" uid="uid://dcgefdmc4sfkg" path="res://assets/Rogue/Run/run5.png" id="60_6dyt3"]
+[ext_resource type="Texture2D" uid="uid://dm2i2j31a8abm" path="res://assets/Rogue/Run/run6.png" id="61_qi3p0"]
+[ext_resource type="Texture2D" uid="uid://bkthqstpxyn3p" path="res://assets/Rogue/Run/run7.png" id="62_62rkd"]
+[ext_resource type="Texture2D" uid="uid://ogr2omak5gve" path="res://assets/Rogue/Run/run8.png" id="63_n0a2e"]
+[ext_resource type="Texture2D" uid="uid://b4c4busb83q3w" path="res://assets/Rogue/Walk/walk2.png" id="64_80gjt"]
+[ext_resource type="Texture2D" uid="uid://2ji3jnka1nu5" path="res://assets/Rogue/Walk/walk3.png" id="65_rklcs"]
+[ext_resource type="Texture2D" uid="uid://dp712wqtm3nq8" path="res://assets/Rogue/Walk/walk4.png" id="66_8y5sb"]
+[ext_resource type="Texture2D" uid="uid://cxk4o2osh3o0d" path="res://assets/Rogue/Walk/walk5.png" id="67_lfpkb"]
+[ext_resource type="Texture2D" uid="uid://dmcdi63tv2bet" path="res://assets/Rogue/Walk/walk6.png" id="68_5wn3h"]
+[ext_resource type="Animation" uid="uid://dv6nphrg2akav" path="res://resources/animations/Mage_Attack.res" id="69_547q5"]
+[ext_resource type="Animation" uid="uid://dbnsp70y14d2s" path="res://resources/animations/Mage_Idle.res" id="70_vxm8f"]
+[ext_resource type="Animation" uid="uid://b68evneu6rtqf" path="res://resources/animations/Mage_Walk.res" id="71_rwcp6"]
+[ext_resource type="Animation" uid="uid://daax15dst6otq" path="res://resources/animations/Rogue_Attack.res" id="72_n7k0x"]
+[ext_resource type="Animation" uid="uid://dyhv5r8udlqhl" path="res://resources/animations/Rogue_Idle.res" id="73_vjbvl"]
+[ext_resource type="Animation" uid="uid://dypcdlepmm6eo" path="res://resources/animations/Rogue_Walk.res" id="74_e07tg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yucty"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0ss10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l5vdb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xvmak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_unqmk")
+}],
+"loop": true,
+"name": &"Knight_Attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Knight_Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ak3fu")
+}],
+"loop": true,
+"name": &"Knight_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_k0v0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ksrxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xvxyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_02qm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6qx2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ugitl")
+}],
+"loop": true,
+"name": &"Knight_Walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_u8jio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_utaf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_151dj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_fpw5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_iqypl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ue4at")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_c47g0")
+}],
+"loop": false,
+"name": &"Mage_Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_fh54r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_pxxlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_48iud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_6ya5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_m44wk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_0fjvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_yn8nr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_0jax3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_6k3pl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_giubx")
+}],
+"loop": true,
+"name": &"Mage_Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_u3x1t")
+}],
+"loop": false,
+"name": &"Mage_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_hl6u6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_rymun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_wdytc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_dbvgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_s6868")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_swian")
+}],
+"loop": false,
+"name": &"Mage_Walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_d3fyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_0wtj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_y8svk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_g81x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_2sdop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_jbgex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_h825v")
+}],
+"loop": false,
+"name": &"Rogue_Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_qsrar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ltnfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_n5php")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_x8c0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_gpols")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_8kbt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_wbgm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_0iidw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_lvka7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_cuuuc")
+}],
+"loop": true,
+"name": &"Rogue_Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_3vfgv")
+}],
+"loop": false,
+"name": &"Rogue_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("56_el10t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_yldlj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_kexqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_t2xxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_6dyt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_qi3p0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_62rkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_n0a2e")
+}],
+"loop": true,
+"name": &"Rogue_Run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("55_3vfgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_80gjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_rklcs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_8y5sb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_lfpkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_5wn3h")
+}],
+"loop": false,
+"name": &"Rogue_Walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cwfn"]
+radius = 16.0
+height = 60.0
+
+[sub_resource type="Animation" id="Animation_o6178"]
+resource_name = "Knight_Attack"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3q2gb"]
+resource_name = "Knight_Idle"
+length = 0.05
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uslr7"]
+resource_name = "Knight_Walk"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_de1x1"]
+resource_name = "Mage_Death"
+length = 1.5
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Mage_Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_rbwsf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Mage_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jkq4g"]
+resource_name = "Rogue_Death"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Rogue_Death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_oa5jd"]
+resource_name = "Rogue_Run"
+length = 1.13
+step = 0.13
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RigidBody2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Rogue_Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RigidBody2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.26, 0.39, 0.52, 0.65, 0.78, 0.91),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6v73"]
+_data = {
+"Knight_Attack": SubResource("Animation_o6178"),
+"Knight_Idle": SubResource("Animation_3q2gb"),
+"Knight_Walk": SubResource("Animation_uslr7"),
+"Mage_Attack": ExtResource("69_547q5"),
+"Mage_Death": SubResource("Animation_de1x1"),
+"Mage_Idle": ExtResource("70_vxm8f"),
+"Mage_Walk": ExtResource("71_rwcp6"),
+"RESET": SubResource("Animation_rbwsf"),
+"Rogue_Attack": ExtResource("72_n7k0x"),
+"Rogue_Death": SubResource("Animation_jkq4g"),
+"Rogue_Idle": ExtResource("73_vjbvl"),
+"Rogue_Run": SubResource("Animation_oa5jd"),
+"Rogue_Walk": ExtResource("74_e07tg")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34qj1"]
+radius = 16.1527
+height = 50.1566
+
+[node name="Game" type="Node2D"]
+position = Vector2(-317, -16)
+
+[node name="EnemyKnight" parent="." instance=ExtResource("8_ude8b")]
+position = Vector2(654, -71)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 135.0
+offset_top = -172.0
+offset_right = 394.0
+offset_bottom = -38.0
+text = "WASD
+
+Number keys to Switch Character
+Left Click to Attack
+Space to Jump
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+script = ExtResource("2_76pp7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+sprite_frames = SubResource("SpriteFrames_yucty")
+animation = &"Mage_Attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-4, 6)
+shape = SubResource("CapsuleShape2D_8cwfn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_k6v73")
+}
+
+[node name="ShootingPoint" type="Node2D" parent="RigidBody2D"]
+position = Vector2(24, 7)
+
+[node name="AttackArea" type="Area2D" parent="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/AttackArea"]
+position = Vector2(16, 5)
+rotation = -0.399005
+shape = SubResource("CapsuleShape2D_34qj1")
+
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
+position = Vector2(318, 16)
+
+[node name="Label" type="Label" parent="RigidBody2D/Camera2D"]
+offset_left = -597.0
+offset_top = -303.0
+offset_right = -557.0
+offset_bottom = -280.0
+script = ExtResource("3_b8hl0")
+metadata/_edit_use_anchors_ = true

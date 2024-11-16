@@ -108,15 +108,15 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j31hb"]
-radius = 252.873
+radius = 493.293
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gcbu"]
 radius = 19.0
 height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87wj5"]
-radius = 15.2535
-height = 64.3489
+radius = 25.8107
+height = 72.4686
 
 [node name="EnemyKnight" type="CharacterBody2D" groups=["enemy"]]
 slide_on_ceiling = false
@@ -132,9 +132,10 @@ libraries = {
 }
 
 [node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(-3, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(0, -1)
+position = Vector2(3, 0)
 shape = SubResource("CircleShape2D_j31hb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -142,9 +143,11 @@ position = Vector2(-4, 3)
 shape = SubResource("CapsuleShape2D_3gcbu")
 
 [node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(50, -5)
+scale = Vector2(1.88291, 1.79135)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(17, 8)
+position = Vector2(1.59329, 0.558239)
 rotation = -0.589342
 shape = SubResource("CapsuleShape2D_87wj5")
 

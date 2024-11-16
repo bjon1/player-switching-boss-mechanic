@@ -1,23 +1,124 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm2l3xw1jnje4"]
+[gd_scene load_steps=6 format=3 uid="uid://bm2l3xw1jnje4"]
 
 [ext_resource type="PackedScene" uid="uid://p3ug4nhudlfc" path="res://scenes/player.tscn" id="1_clv6e"]
 [ext_resource type="Script" path="res://scripts/label.gd" id="3_b8hl0"]
 [ext_resource type="PackedScene" uid="uid://c6gjb0c8188tg" path="res://scenes/EnemyKnight.tscn" id="8_ude8b"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fflbx"]
+radius = 24.9999
+height = 154.775
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_44xue"]
+distance = 0.707092
+
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_clv6e")]
-position = Vector2(318, 50)
+position = Vector2(295, 59)
 
-[node name="EnemyKnight" parent="." instance=ExtResource("8_ude8b")]
-position = Vector2(36, 70)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -34)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(129, 63)
-
-[node name="Label" type="Label" parent="Camera2D"]
+[node name="Label" type="Label" parent="Player/Camera2D"]
 offset_left = -597.0
 offset_top = -303.0
 offset_right = -557.0
 offset_bottom = -280.0
 script = ExtResource("3_b8hl0")
+metadata/_edit_use_anchors_ = true
+
+[node name="EnemyKnight" parent="." instance=ExtResource("8_ude8b")]
+position = Vector2(-205, -41)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 135.0
+offset_top = -172.0
+offset_right = 394.0
+offset_bottom = -38.0
+text = "WASD
+
+Number keys to Switch Character
+Left Click to Attack
+Space to Jump
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-99, 238)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-23, 22)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(133, 131)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(3, 2)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(484, 239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-5, 20)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(394, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(3, 2)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(629, -71)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2(3, 2)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(671, -398)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D7"]
+position = Vector2(3, 2)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="."]
+position = Vector2(671, -398)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D8"]
+position = Vector2(-328, 218)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="."]
+position = Vector2(652, 117)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D9"]
+position = Vector2(-2, 0)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="."]
+position = Vector2(745, 234)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D10"]
+position = Vector2(1, 11)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_fflbx")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(251, 345)
+rotation = 0.261799
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = -0.240593
+shape = SubResource("WorldBoundaryShape2D_44xue")
