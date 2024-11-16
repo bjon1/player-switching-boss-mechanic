@@ -18,10 +18,8 @@ var character_datas = [
 	preload("res://resources/Knight.tres")
 ]
 var movement_enabled: bool = true
-
-
-
 func _ready():
+
 	animation_player = get_node("AnimationPlayer")
 	animated_sprite = get_node("AnimationSprite2D")
 	
@@ -40,6 +38,9 @@ func _ready():
 	add_child(ultimate_timer)
 
 func _on_attack_rate_timeout():
+	if collision_data["in_attack_area"]: # If the player is still in attacking range
+		print("Sending Damage")
+		adversary.take_damage(current_character.attack_damage)
 	movement_enabled = true
 	animation_player.play(current_character.character_name + "_Idle")
 	
@@ -50,19 +51,6 @@ func _on_death_timeout():
 	while current_character in character_datas:
 		character_datas.erase(current_character)
 	movement_enabled = true
-	
-func switch_character(character_num: int):
-	print("Switch Character ", str(character_num))
-	# If the character has not been implemented yet
-	if character_num > len(character_datas):
-		return
-	# If the character has already been chosen
-	if character_datas[character_num-1] == current_character:
-		return
-	current_character = character_datas[character_num-1]
-	print("Switched to " + current_character.character_name)
-	animation_player.play(current_character.character_name + "_Idle")
-	print(character_datas[character_num-1])
 
 func attack():
 	movement_enabled = false
@@ -99,9 +87,3 @@ func die():
 	# Start a death timer
 	death_timer.wait_time = 1.2
 	death_timer.start()
-
-
-func move_toward(magnitude: int, direction: int):
-	if not movement_enabled:
-		return
-	# TODO not implemented yet, makes code more modular
