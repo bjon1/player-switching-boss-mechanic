@@ -3,14 +3,17 @@ class_name Player
 
 const DECELERATION: float = 50.0 
 const FRICTION = 600
-const ACCELERATION = 1500
+const ACCELERATION = 600
 const MAX_SPEED = 225
+const JUMP_POWER = 500
+const GRAVITY = 1000  # Adjusted to a higher value for natural fall speed
+const MAX_FALL_SPEED = 800  # Cap the maximum fall speed to prevent endless acceleration
+
 var player_direction = 0
+var is_on_ground: bool = false  # Track if the player is on the ground
 
 func _ready():
-	# Call the parent _ready() to ensure everything is set up
 	super._ready()
-	# Player has no need for a detection area
 	collision_data["in_detection_area"] = true 
 	character_datas = [character_datas[0], character_datas[1]]
 	current_character = character_datas[0]
@@ -19,14 +22,75 @@ func _ready():
 	ultimate_timer.timeout.connect(_on_player_ultimate_timeout)
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	
-	animation_player.play(current_character.character_name + "_Idle") # Set Opening Sprite
+	animation_player.play(current_character.character_name + "_Idle")
 
 func _physics_process(delta: float) -> void:
-	handle_movement_logic(delta)	
+	handle_movement_logic(delta)
+	handle_jump_and_gravity(delta)
+	
 	if Input.is_action_just_pressed("left_mouse_click"):
-		player_attack()		
+		player_attack()
 	if Input.is_action_just_pressed("ultimate_key"):
 		player_ultimate_ability()
+
+	# Check for number key presses (1 to # of Characters Available)
+	for i in range(1, len(character_datas) + 1): 
+		if Input.is_action_just_pressed(str(i)):
+			switch_character(i)
+
+func handle_jump_and_gravity(delta: float) -> void:
+	# Check if the player is on the ground
+	is_on_ground = is_on_floor()
+
+	# Jump logic
+	if Input.is_action_just_pressed("spacebar") and is_on_ground:
+		velocity.y = -JUMP_POWER  # Apply an upward force
+
+	# Gravity logic
+	if not is_on_ground:
+		velocity.y += GRAVITY * delta
+		velocity.y = min(velocity.y, MAX_FALL_SPEED)  # Cap fall speed to MAX_FALL_SPEED
+
+	# Movement with gravity applied
+	move_and_slide()
+
+func handle_movement_logic(delta: float) -> void:
+	var movement_data = get_movement_input()
+	handle_movement_animation(movement_data)
+	var speed = current_character.speed
+	
+	if movement_data == Vector2.ZERO:
+		if velocity.length() > (FRICTION * delta):
+			velocity -= velocity.normalized() * (FRICTION * delta)
+		else:
+			velocity.x = 0
+	else:
+		velocity.x += movement_data.x * ACCELERATION * delta
+		velocity.x = clamp(velocity.x, -speed, speed)
+
+func handle_movement_animation(direction_vector: Vector2) -> void:
+	if direction_vector.x > 0:
+		player_direction = 1
+		$AttackArea.scale.x = abs(scale.x)
+		$CollisionShape2D.scale.x = abs(scale.x)
+		$AnimatedSprite2D.flip_h = false
+		$ShootingPoint.scale.x = abs(scale.x)
+	elif direction_vector.x < 0:
+		player_direction = -1
+		$AttackArea.scale.x = -(scale.x)
+		$CollisionShape2D.scale.x = -(scale.x)
+		$AnimatedSprite2D.flip_h = true
+		$ShootingPoint.scale.x = -(scale.x)
+
+	if not animation_player.is_playing():
+		if velocity.x != 0 and is_on_ground:
+			animation_player.play(current_character.character_name + "_Walk")
+		elif is_on_ground:
+			animation_player.play(current_character.character_name + "_Idle")
+		else:
+			animation_player.play(current_character.character_name + "_Jump")
+
+
 	# Check for number key presses (1 to # of Characters Available)
 	for i in range(1, len(character_datas) + 1): 
 		if Input.is_action_just_pressed(str(i)):  # Check if the key for 'i' is pressed
@@ -48,42 +112,20 @@ func get_movement_input() -> Vector2:
 	movement_input = movement_input.normalized()
 	return movement_input	
 	
-func handle_movement_logic(delta):
-	var movement_data = get_movement_input()
-	handle_movement_animation(movement_data)
-	print("Velocity", velocity)
-	
-	if movement_data == Vector2.ZERO:
-		if velocity.length() > (FRICTION * delta):
-			velocity -= velocity.normalized() * (FRICTION * delta)
-		else:
-			velocity = Vector2.ZERO
-	else:
-		velocity += (movement_data * ACCELERATION * delta)
-		velocity = velocity.limit_length(current_character.speed)
-		
-	move_and_slide()
-	
-func handle_movement_animation(direction_vector: Vector2) -> void:
-	if direction_vector.x > 0:
-		player_direction = 1
-		$AttackArea.scale.x = abs(scale.x)
-		$CollisionShape2D.scale.x = abs(scale.x)
-		$AnimatedSprite2D.flip_h = false
-		$ShootingPoint.scale.x = abs(scale.x)
-	elif direction_vector.x < 0:
-		player_direction = -1
-		$AttackArea.scale.x = -(scale.x)
-		$CollisionShape2D.scale.x = -(scale.x)
-		$AnimatedSprite2D.flip_h = true
-		$ShootingPoint.scale.x = -(scale.x)
-	
-	if not animation_player.is_playing():
-		if velocity != Vector2.ZERO:
-			animation_player.play(current_character.character_name + "_Walk")
-		else:
-			animation_player.play(current_character.character_name + "_Idle")
-		
+func switch_character(character_num: int):
+	print("Switch Character ", str(character_num))
+	# If the character has not been implemented yet
+	if character_num > len(character_datas):
+		return
+	# If the character has already been chosen
+	if character_datas[character_num-1] == current_character:
+		return
+	current_character = character_datas[character_num-1]
+	print("Switched to " + current_character.character_name)
+	animation_player.play(current_character.character_name + "_Idle")
+	print(character_datas[character_num-1])
+
+
 func player_attack():
 	attack()
 	
@@ -91,7 +133,7 @@ func player_ultimate_ability():
 	ultimate_ability()
 	SignalBus.ultimate_started.emit()
 	print("ultimate ability started")
-
+	
 func launch_projectile(scene: PackedScene, projectile_speed: int):
 	# Instantiate Projectile
 	var projectile_inst = scene.instantiate()
@@ -122,8 +164,6 @@ func _on_player_attack_rate_timeout():
 	var attack_data = current_character.get_attack_data()
 	if attack_data["attack_type"] == "projectile":
 		launch_projectile(attack_data["projectile_scene"], attack_data["projectile_speed"])
-	if collision_data["in_attack_area"]: # If the player is still in attacking range
-		adversary.take_damage(current_character.attack_damage)
 
 	_on_attack_rate_timeout()
 
