@@ -38,52 +38,21 @@ func _ready():
 	ultimate_timer = Timer.new()
 	ultimate_timer.one_shot = true
 	add_child(ultimate_timer)
+
+func _on_attack_rate_timeout():
+	movement_enabled = true
+	animation_player.play(current_character.character_name + "_Idle")
 	
 func _on_ultimate_timeout():
 	animation_player.stop()
-	
-# Implemented in the children 
-func _on_attack_rate_timeout():
-	# Get attack data and execute attack logic
-	var attack_data = current_character.get_attack_data()
-	if attack_data["attack_type"] == "projectile":
-		launch_projectile(attack_data["projectile_scene"], attack_data["projectile_speed"])
-	if collision_data["in_attack_area"]: # If the player is still in attacking range
-		adversary.take_damage(current_character.attack_damage)
-	animation_player.play(current_character.character_name + "_Idle")	
-	# Allow movement again
-	movement_enabled = true	
-
-func launch_projectile(scene: PackedScene, projectile_speed: int):
-	# Instantiate Projectile
-	var projectile_inst = scene.instantiate()
-	# Turn off Gravity
-	if projectile_inst is RigidBody2D:
-		projectile_inst.gravity_scale = 0
-	# Update the direction
-	var direction: int = 1
-	if velocity.x > 0:
-		direction = 1
-		projectile_inst.rotation_degrees = 0 # Face Right
-	elif velocity.x < 0:
-		direction = -1
-		projectile_inst.rotation_degrees = 180 # Face Left
- 	# Set the position of the projectile
-	projectile_inst.position = $ShootingPoint.get_global_position() + Vector2(30 * direction, -10 * direction) 
-	# Apply velocity to the projectile in the facing direction
-	projectile_inst.apply_central_impulse(Vector2(projectile_speed * direction, 0))
-	get_tree().get_root().add_child(projectile_inst)
-	# Play projectile animation
-	var projectile_animation_player = projectile_inst.get_node("AnimationPlayer")
-	projectile_animation_player.queue("Shoot_Fireball")
-	
+		
 func _on_death_timeout():
 	while current_character in character_datas:
 		character_datas.erase(current_character)
 	movement_enabled = true
 	
 func switch_character(character_num: int):
-	print("Switch Character", str(character_num))
+	print("Switch Character ", str(character_num))
 	# If the character has not been implemented yet
 	if character_num > len(character_datas):
 		return
