@@ -38,10 +38,10 @@ func _ready():
 	add_child(ultimate_timer)
 
 func _on_attack_rate_timeout():
-	if collision_data["in_attack_area"]: # If the player is still in attacking range
+	if adversary and collision_data["in_attack_area"]: # If the player is still in attacking range
 		print("Sending Damage")
 		adversary.take_damage(current_character.attack_damage)
-	movement_enabled = true
+		movement_enabled = true
 	animation_player.play(current_character.character_name + "_Idle")
 	
 func _on_ultimate_timeout():
@@ -50,9 +50,12 @@ func _on_ultimate_timeout():
 func _on_death_timeout():
 	while current_character in character_datas:
 		character_datas.erase(current_character)
+	print("DYING PROCESS DONE")
 	movement_enabled = true
+	
 
 func attack():
+
 	movement_enabled = false
 	if not attack_rate_timer.is_stopped():
 		return # Avoid attacking if still on cooldown
@@ -81,9 +84,9 @@ func take_damage(damage: int):
 		die()
 
 func die():
+	print("initiate dying process")
 	movement_enabled = false
 	animation_player.play(current_character.character_name + "_Death")
-	print("initiate dying process")
 	# Start a death timer
-	death_timer.wait_time = 1.2
+	death_timer.wait_time = 1.5
 	death_timer.start()

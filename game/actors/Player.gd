@@ -25,6 +25,7 @@ func _ready():
 	animation_player.play(current_character.character_name + "_Idle")
 
 func _physics_process(delta: float) -> void:
+		
 	handle_movement_logic(delta)
 	handle_jump_and_gravity(delta)
 	
@@ -39,6 +40,7 @@ func _physics_process(delta: float) -> void:
 			switch_character(i)
 
 func handle_jump_and_gravity(delta: float) -> void:
+
 	# Check if the player is on the ground
 	is_on_ground = is_on_floor()
 
@@ -74,13 +76,11 @@ func handle_movement_animation(direction_vector: Vector2) -> void:
 		$AttackArea.scale.x = abs(scale.x)
 		$CollisionShape2D.scale.x = abs(scale.x)
 		$AnimatedSprite2D.flip_h = false
-		$ShootingPoint.scale.x = abs(scale.x)
 	elif direction_vector.x < 0:
 		player_direction = -1
 		$AttackArea.scale.x = -(scale.x)
 		$CollisionShape2D.scale.x = -(scale.x)
 		$AnimatedSprite2D.flip_h = true
-		$ShootingPoint.scale.x = -(scale.x)
 
 	if not animation_player.is_playing():
 		if velocity.x != 0 and is_on_ground:
@@ -103,6 +103,7 @@ func add_new_character(character_data: Resource):
 
 # Gather input data from the player
 func get_movement_input() -> Vector2:
+	
 	if not movement_enabled:
 		return Vector2.ZERO
 		
@@ -127,7 +128,12 @@ func switch_character(character_num: int):
 
 
 func player_attack():
-	attack()
+	if not movement_enabled:
+		print("ATTACK NOT ENABLED")
+		return
+	else: 
+		attack()
+		print("still attacking...")
 	
 func player_ultimate_ability():
 	ultimate_ability()
@@ -146,7 +152,7 @@ func launch_projectile(scene: PackedScene, projectile_speed: int):
 	elif player_direction == -1:
 		projectile_inst.rotation_degrees = 180 # Face Left
  	# Set the position of the projectile
-	projectile_inst.position = $ShootingPoint.get_global_position() + Vector2(30 * player_direction, -10 * player_direction) 
+	projectile_inst.position = $ShootingPoint.get_global_position() + Vector2(56 * player_direction, -10 * player_direction) 
 	# Apply velocity to the projectile in the facing direction
 	projectile_inst.apply_central_impulse(Vector2(projectile_speed * player_direction, 0))
 	get_tree().get_root().add_child(projectile_inst)

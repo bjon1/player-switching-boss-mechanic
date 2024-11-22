@@ -586,12 +586,12 @@ libraries = {
 }
 
 [node name="ShootingPoint" type="Node2D" parent="."]
-position = Vector2(24, 7)
+position = Vector2(0, 7)
 
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(16, 5)
+position = Vector2(20, 3)
 rotation = -0.399005
 shape = SubResource("CapsuleShape2D_dpgia")
 
