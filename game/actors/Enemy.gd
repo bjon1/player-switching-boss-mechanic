@@ -14,8 +14,6 @@ func _ready():
 	turn_timer.timeout.connect(_on_turn_timeout)
 	attack_rate_timer.timeout.connect(_on_enemy_attack_rate_timeout)	
 	death_timer.timeout.connect(_on_enemy_death_timeout)
-	SignalBus.ultimate_started.connect(_on_adversary_ultimate_started)
-	SignalBus.ultimate_ended.connect(_on_adversary_ultimate_ended)
 	
 func _physics_process(delta):
 	status_checker(delta)	
@@ -76,6 +74,9 @@ func handle_movement(delta):
 				movement_enabled = false
 	
 func attack_and_adjust(delta):
+	
+	if not adversary:
+		return
 	
 	# Adjust position to center the player in the hitbox
 	var player_center_offset = adversary.global_position.x - position.x

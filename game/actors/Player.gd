@@ -141,15 +141,12 @@ func switch_character(character_num: int):
 
 func player_attack():
 	if not movement_enabled:
-		print("ATTACK NOT ENABLED")
 		return
 	else: 
 		attack()
-		print("still attacking...")
 	
 func player_ultimate_ability():
 	ultimate_ability()
-	SignalBus.ultimate_started.emit()
 	print("ultimate ability started")
 	
 func launch_projectile(scene: PackedScene, projectile_speed: int):
@@ -178,7 +175,7 @@ func collided_with_death_border():
 	
 func _on_player_ultimate_timeout():
 	_on_ultimate_timeout()
-	SignalBus.ultimate_ended.emit()
+	change_player_group($".", "hidden", "player")
 	print("ultimate ended")
 	
 func _on_player_attack_rate_timeout():

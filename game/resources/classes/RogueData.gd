@@ -9,6 +9,8 @@ class_name Rogue
 @export var speed: float = 200
 @export var attack_damage: int = 30
 @export var attack_rate: float = 0.6
+@export var ultimate_time: float = 2
+@export var ultimate_cooldown: float = 10
 @export var animations: Dictionary = {
 	"Attack": "res://resources/animations/Rogue_Attack.res",
 	"Idle": "res://resources/animations/Rogue_Idle.res",

@@ -11,10 +11,12 @@ max_health = 100
 health_regen = 3.0
 health_regen_delay = 1.0
 speed = 150.0
-attack_damage = 50
+attack_damage = 60
 attack_rate = 0.75
 animations = {
 "Attack": "res://resources/animations/Mage_Attack.res",
 "Idle": "res://resources/animations/Mage_Idle.res",
 "Walk": "res://resources/animations/Mage_Walk.res"
 }
+ultimate_time = 0.0
+ultimate_cooldown = 10.0

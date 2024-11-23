@@ -11,6 +11,8 @@ class_name Mage
 @export var attack_damage: int = 60
 @export var attack_rate: float = 0.75
 @export var animations: Dictionary 
+@export var ultimate_time: float = 0.0
+@export var ultimate_cooldown: float = 10
 
 func _init():
 	print("Initializing Mage")

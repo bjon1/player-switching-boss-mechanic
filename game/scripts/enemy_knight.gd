@@ -12,6 +12,9 @@ func _ready():
 			current_character = character # Select the Knight
 
 func _physics_process(delta):
+	if adversary and adversary.is_in_group("hidden"):
+		animation_player.play(current_character.character_name + "_Idle")
+		return
 	status_checker(delta)	
 	handle_teleport()
 	
