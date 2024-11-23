@@ -4,8 +4,10 @@
 * [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
 * [itch.io](https://jonb1.itch.io/game)
 
-### 2024-11-2 3hr Add Enemy Turn Timer
+### 2024-11-2 3hr Add Enemy Turn Timer, Add Mage Ultimate, Add Ultimate Cooldown Timer
 * Enemy now takes 0.8 seconds to turn, allowing the player a chance to strike
+* Added mage ultimate feature
+* Added an ultimate cooldown timer, so ultimate can't be spammed
 
 ### 2024-11-22 4hr Fix Mage Fireball Glitch, Add TileMap
 * Fixed Mage Fireball Spawning Glitch
