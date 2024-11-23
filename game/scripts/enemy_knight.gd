@@ -4,6 +4,7 @@ class_name EnemyKnight
 const TELEPORT_RADIUS: float = 150.0  # Maximum radius within which the enemy can teleport closer to the player
 const TELEPORT_CHANCE: float = 0.005
 
+
 func _ready():
 	super._ready()
 	for character in character_datas:

@@ -3,6 +3,7 @@ class_name Character
 
 @onready var animation_player: AnimationPlayer
 @onready var animated_sprite: AnimatedSprite2D 
+@onready var animation_tree: AnimationTree = $AnimationTree
 var collision_data = {
 	"in_detection_area": false,
 	"in_attack_area": false
@@ -22,6 +23,7 @@ func _ready():
 
 	animation_player = get_node("AnimationPlayer")
 	animated_sprite = get_node("AnimationSprite2D")
+	#animation_tree.active = true
 	
 	# Add a timer to control attack rate
 	attack_rate_timer = Timer.new()
@@ -41,7 +43,7 @@ func _on_attack_rate_timeout():
 	if adversary and collision_data["in_attack_area"]: # If the player is still in attacking range
 		print("Sending Damage")
 		adversary.take_damage(current_character.attack_damage)
-		movement_enabled = true
+	movement_enabled = true
 	animation_player.play(current_character.character_name + "_Idle")
 	
 func _on_ultimate_timeout():
@@ -53,9 +55,13 @@ func _on_death_timeout():
 	print("DYING PROCESS DONE")
 	movement_enabled = true
 	
+func update_animation_parameters():
+	animation_tree.set("parameters/conditions/idle", velocity == Vector2.ZERO)
+	animation_tree.set("parameters/conditions/is_moving", velocity != Vector2.ZERO)
+	animation_tree.set("parameters/conditions/attack", Input.is_action_just_pressed("left_mouse_click") )
+	
 
 func attack():
-
 	movement_enabled = false
 	if not attack_rate_timer.is_stopped():
 		return # Avoid attacking if still on cooldown
@@ -88,5 +94,5 @@ func die():
 	movement_enabled = false
 	animation_player.play(current_character.character_name + "_Death")
 	# Start a death timer
-	death_timer.wait_time = 1.5
+	death_timer.wait_time = 1.0
 	death_timer.start()

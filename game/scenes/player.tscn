@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://p3ug4nhudlfc"]
+[gd_scene load_steps=108 format=3 uid="uid://p3ug4nhudlfc"]
 
 [ext_resource type="Script" path="res://actors/Player.gd" id="1_1rvn0"]
 [ext_resource type="Texture2D" uid="uid://ccfnc1o8jc75c" path="res://assets/Rogue/Attack/Attack1.png" id="1_65ai0"]
@@ -462,33 +462,6 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_rbwsf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Mage_Attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_jkq4g"]
 resource_name = "Rogue_Death"
 step = 0.1
@@ -555,7 +528,6 @@ _data = {
 "Mage_Death": SubResource("Animation_de1x1"),
 "Mage_Idle": ExtResource("29_d32ts"),
 "Mage_Walk": ExtResource("30_6hnb5"),
-"RESET": SubResource("Animation_rbwsf"),
 "Rogue_Attack": ExtResource("31_yfogd"),
 "Rogue_Death": SubResource("Animation_jkq4g"),
 "Rogue_Idle": ExtResource("32_75m1u"),
@@ -567,6 +539,121 @@ _data = {
 radius = 16.1527
 height = 50.1566
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_454if"]
+animation = &"Mage_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_357em"]
+animation = &"Mage_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hk5q5"]
+animation = &"Mage_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mts8o"]
+animation = &"Mage_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_stdux"]
+animation = &"Mage_Attack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o6r2i"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_454if")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_357em")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_hk5q5")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_mts8o")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_stdux")
+blend_point_4/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_puw00"]
+animation = &"Mage_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y1uo2"]
+animation = &"Mage_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lbboh"]
+animation = &"Mage_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_us301"]
+animation = &"Mage_Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rjb2s"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_puw00")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_y1uo2")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_lbboh")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_us301")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eejeu"]
+animation = &"Mage_Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_18jtj"]
+animation = &"Mage_Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t4ene"]
+animation = &"Mage_Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lt48p"]
+animation = &"Mage_Walk"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qv1dh"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_eejeu")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_18jtj")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_t4ene")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_lt48p")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x0d5e"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w11ib"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cqkpb"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s8ty4"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q4l12"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rtd2h"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xxph4"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o6e3p"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace2D_o6r2i")
+states/Attack/position = Vector2(408, 5)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_rjb2s")
+states/Idle/position = Vector2(345, 100)
+states/Start/position = Vector2(217, 100)
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_qv1dh")
+states/Walk/position = Vector2(481, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_x0d5e"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_w11ib"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cqkpb"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_s8ty4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_q4l12"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_rtd2h"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_xxph4")]
+graph_offset = Vector2(-85, -12.0595)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 slide_on_ceiling = false
@@ -574,7 +661,7 @@ script = ExtResource("1_1rvn0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tcaca")
-animation = &"Mage_Attack"
+animation = &"Knight_Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 1)
@@ -594,6 +681,17 @@ position = Vector2(0, 7)
 position = Vector2(20, 3)
 rotation = -0.399005
 shape = SubResource("CapsuleShape2D_dpgia")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_o6e3p")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack = false
+parameters/conditions/idle = false
+parameters/conditions/is_moving = false
+parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, -0.005988)
+parameters/Walk/blend_position = Vector2(0, 0.005988)
 
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

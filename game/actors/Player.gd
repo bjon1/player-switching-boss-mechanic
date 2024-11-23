@@ -25,6 +25,8 @@ func _ready():
 	animation_player.play(current_character.character_name + "_Idle")
 
 func _physics_process(delta: float) -> void:
+	
+	#update_animation_parameters()
 		
 	handle_movement_logic(delta)
 	handle_jump_and_gravity(delta)
@@ -38,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	for i in range(1, len(character_datas) + 1): 
 		if Input.is_action_just_pressed(str(i)):
 			switch_character(i)
+			
+
 
 func handle_jump_and_gravity(delta: float) -> void:
 

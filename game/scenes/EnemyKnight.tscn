@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6gjb0c8188tg"]
+[gd_scene load_steps=36 format=3 uid="uid://c6gjb0c8188tg"]
 
 [ext_resource type="Texture2D" uid="uid://bumwehaq1mlw1" path="res://assets/Knight/Attack/attack0.png" id="1_eobve"]
 [ext_resource type="Script" path="res://scripts/enemy_knight.gd" id="1_u4yv4"]
@@ -118,6 +118,68 @@ height = 54.0
 radius = 25.8107
 height = 72.4686
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_454if"]
+animation = &"Mage_Attack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o6r2i"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_454if")
+blend_point_0/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rymwk"]
+animation = &"Mage_Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_rjb2s"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_rymwk")
+blend_point_0/pos = Vector2(0, 0.1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8wvr"]
+animation = &"Mage_Walk"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qv1dh"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_x8wvr")
+blend_point_0/pos = Vector2(0, 0)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x0d5e"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w11ib"]
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cqkpb"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s8ty4"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q4l12"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rtd2h"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xxph4"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ncxoh"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace2D_o6r2i")
+states/Attack/position = Vector2(408, 5)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_rjb2s")
+states/Idle/position = Vector2(345, 100)
+states/Start/position = Vector2(217, 100)
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_qv1dh")
+states/Walk/position = Vector2(481, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_x0d5e"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_w11ib"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_cqkpb"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_s8ty4"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_q4l12"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_rtd2h"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_xxph4")]
+graph_offset = Vector2(-73, -38.0595)
+
 [node name="EnemyKnight" type="CharacterBody2D" groups=["enemy"]]
 slide_on_ceiling = false
 script = ExtResource("1_u4yv4")
@@ -150,6 +212,17 @@ scale = Vector2(1.88291, 1.79135)
 position = Vector2(1.59329, 0.558239)
 rotation = -0.589342
 shape = SubResource("CapsuleShape2D_87wj5")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+tree_root = SubResource("AnimationNodeStateMachine_ncxoh")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/attack = false
+parameters/conditions/idle = false
+parameters/conditions/is_moving = false
+parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(-0.353909, -0.12766)
+parameters/Walk/blend_position = Vector2(0, 0)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

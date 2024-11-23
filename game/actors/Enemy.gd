@@ -10,6 +10,7 @@ func _ready():
 	
 func _physics_process(delta):
 	status_checker(delta)	
+	update_animation_parameters()
 
 func _on_adversary_ultimate_started():
 	movement_enabled = false
