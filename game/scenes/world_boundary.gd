@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Replace with your player's node name
-		body.die()  # Call the player's die method
+		body.collided_with_death_border()  # Call the player's die method

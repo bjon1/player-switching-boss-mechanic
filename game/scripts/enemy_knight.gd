@@ -9,7 +9,7 @@ func _ready():
 	super._ready()
 	for character in character_datas:
 		if character.character_name == "Knight":
-			current_character = character # Select he Knight
+			current_character = character # Select the Knight
 
 func _physics_process(delta):
 	status_checker(delta)	

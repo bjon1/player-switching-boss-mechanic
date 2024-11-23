@@ -11,6 +11,7 @@ const MAX_FALL_SPEED = 800  # Cap the maximum fall speed to prevent endless acce
 
 var player_direction = 0
 var is_on_ground: bool = false  # Track if the player is on the ground
+var last_jump_position = Vector2.ZERO
 
 func _ready():
 	super._ready()
@@ -50,6 +51,7 @@ func handle_jump_and_gravity(delta: float) -> void:
 
 	# Jump logic
 	if Input.is_action_just_pressed("spacebar") and is_on_ground:
+		save_jump_position()
 		velocity.y = -JUMP_POWER  # Apply an upward force
 
 	# Gravity logic
@@ -59,6 +61,12 @@ func handle_jump_and_gravity(delta: float) -> void:
 
 	# Movement with gravity applied
 	move_and_slide()
+	
+func save_jump_position():
+	last_jump_position = global_position
+	
+func teleport_to_last_jump_position():
+	global_position = last_jump_position
 
 func handle_movement_logic(delta: float) -> void:
 	var movement_data = get_movement_input()
@@ -163,6 +171,10 @@ func launch_projectile(scene: PackedScene, projectile_speed: int):
 	# Play projectile animation
 	var projectile_animation_player = projectile_inst.get_node("AnimationPlayer")
 	projectile_animation_player.queue("Shoot_Fireball")
+
+func collided_with_death_border():
+	die()
+	teleport_to_last_jump_position()
 	
 func _on_player_ultimate_timeout():
 	_on_ultimate_timeout()
@@ -190,6 +202,7 @@ func player_lose_screen():
 	
 func player_take_damage(damage: int):
 	take_damage(damage)
+	
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

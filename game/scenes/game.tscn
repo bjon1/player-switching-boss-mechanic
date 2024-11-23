@@ -222,7 +222,7 @@ sources/0 = SubResource("TileSetAtlasSource_tuba2")
 pattern_0 = SubResource("TileMapPattern_rq4jx")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3iw72"]
-distance = -56.0
+distance = -175.0
 
 [node name="Game" type="Node2D"]
 
@@ -243,7 +243,7 @@ visibility_layer = 17
 position = Vector2(295, 59)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(5, 0)
+position = Vector2(-4, 1)
 
 [node name="Label" type="Label" parent="Player/Camera2D"]
 offset_left = -597.0
