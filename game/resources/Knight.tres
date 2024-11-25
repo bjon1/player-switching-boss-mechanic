@@ -12,6 +12,8 @@ health_regen_delay = 1.0
 speed = 150.0
 attack_damage = 40
 attack_rate = 0.8
+ultimate_time = 1.0
+ultimate_cooldown = 10.0
 animations = {
 "Attack": "res://resources/animations/Knight_Attack.res",
 "Idle": "res://resources/animations/Knight_Idle.res",

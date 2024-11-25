@@ -131,12 +131,14 @@ func change_player_group(node: Node2D, old_groupname: String, new_groupname: Str
 func take_damage(damage: int):
 	if not death_timer.is_stopped():
 		print("Character is dying, not taking anymore damage")
+		
 		return
 	current_character.current_health -= damage
 	print("Current Health: ", current_character.current_health)
 	if current_character.current_health <= 0:
 		print("dying")
 		die()
+	emit_health_signal()
 
 func die():
 	print("initiate dying process")
@@ -145,3 +147,8 @@ func die():
 	# Start a death timer
 	death_timer.wait_time = 1.0
 	death_timer.start()
+	emit_health_signal()
+	
+	
+func emit_health_signal():
+	SignalBus.health_changed.emit($".", current_character.current_health, current_character.max_health) 

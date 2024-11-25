@@ -4,13 +4,14 @@ class_name EnemyKnight
 const TELEPORT_RADIUS: float = 150.0  # Maximum radius within which the enemy can teleport closer to the player
 const TELEPORT_CHANCE: float = 0.005
 
-
 func _ready():
 	super._ready()
 	for character in character_datas:
 		if character.character_name == "Knight":
 			current_character = character # Select the Knight
-
+	Debug.log("ENEMYKNIGHT " + str(current_character.current_health))
+	call_deferred('emit_health_signal')
+	
 func _physics_process(delta):
 	if adversary and adversary.is_in_group("hidden"):
 		animation_player.play(current_character.character_name + "_Idle")

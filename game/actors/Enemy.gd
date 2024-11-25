@@ -39,6 +39,7 @@ func _on_enemy_attack_rate_timeout():
 func _on_turn_timeout():
 	print("TURN TIMEOUT")
 	scale.x = turn_direction
+	
 	movement_enabled = true
 
 func status_checker(delta):

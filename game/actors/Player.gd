@@ -23,7 +23,10 @@ func _ready():
 	ultimate_timer.timeout.connect(_on_player_ultimate_timeout)
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	
+	Debug.log("PLAYER " + str(current_character.current_health))
 	animation_player.play(current_character.character_name + "_Idle")
+	
+	call_deferred('emit_health_signal')
 
 func _physics_process(delta: float) -> void:
 	
@@ -137,7 +140,7 @@ func switch_character(character_num: int):
 	print("Switched to " + current_character.character_name)
 	animation_player.play(current_character.character_name + "_Idle")
 	print(character_datas[character_num-1])
-
+	emit_health_signal()
 
 func player_attack():
 	if not movement_enabled:
@@ -196,9 +199,6 @@ func _on_player_death_timeout():
 func player_lose_screen():
 	print("Game Over!!")
 	queue_free()
-	
-func player_take_damage(damage: int):
-	take_damage(damage)
 	
 
 func _on_attack_area_body_entered(body: Node2D) -> void:

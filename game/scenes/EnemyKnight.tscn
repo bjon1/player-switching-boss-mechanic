@@ -115,8 +115,8 @@ radius = 19.0
 height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87wj5"]
-radius = 25.8107
-height = 72.4686
+radius = 17.947
+height = 51.8848
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_454if"]
 animation = &"Mage_Attack"
@@ -209,7 +209,7 @@ position = Vector2(50, -5)
 scale = Vector2(1.88291, 1.79135)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(1.59329, 0.558239)
+position = Vector2(-4.24874, -0.558238)
 rotation = -0.589342
 shape = SubResource("CapsuleShape2D_87wj5")
 
