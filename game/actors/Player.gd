@@ -197,7 +197,8 @@ func _on_player_death_timeout():
 		player_lose_screen()
 	
 func player_lose_screen():
-	print("Game Over!!")
+	Debug.log("Game Over!! Emitting lose game screen")
+	SignalBus.lose_game.emit()
 	queue_free()
 	
 
@@ -214,5 +215,6 @@ func _on_attack_area_body_exited(body: Node2D) -> void:
 		print("PLAYER's Attack Area Exited")
 	
 func _on_enemy_died(character_data: Resource):
+	character_data.current_health = character_data.max_health
 	add_new_character(character_data)
 	

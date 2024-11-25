@@ -74,7 +74,7 @@ func _on_ultimate_timeout():
 func _on_death_timeout():
 	while current_character in character_datas:
 		character_datas.erase(current_character)
-	print("DYING PROCESS DONE")
+	Debug.log("DYING PROCESS DONE")
 	movement_enabled = true
 	
 func update_animation_parameters():
@@ -141,12 +141,13 @@ func take_damage(damage: int):
 	emit_health_signal()
 
 func die():
-	print("initiate dying process")
+	Debug.log("initiate dying process")
 	movement_enabled = false
 	animation_player.play(current_character.character_name + "_Death")
 	# Start a death timer
 	death_timer.wait_time = 1.0
 	death_timer.start()
+	current_character.current_health = 0.0
 	emit_health_signal()
 	
 	
