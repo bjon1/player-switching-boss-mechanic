@@ -4,8 +4,9 @@
 * [Proposal](https://docs.google.com/document/d/1pc96bL5eg8kmmHi8BilyL7ZiBCj0U-8YZ9nW7z4o3qc/edit?usp=sharing)
 * [itch.io](https://jonb1.itch.io/game)
 
-### 2024-11-25 2hr Add Losing Screen
+### 2024-11-25 2hr Add Losing Screen, Update Boss Sprite
 * Add a losing screen
+* Update Boss sprite with a cloud and longer sword
 
 ### 2024-11-24 4hr Add Health Bar to Player and Enemy
 * Enemy and Player now have a health bar

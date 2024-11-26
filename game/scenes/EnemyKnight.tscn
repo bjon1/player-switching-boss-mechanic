@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c6gjb0c8188tg"]
+[gd_scene load_steps=41 format=3 uid="uid://c6gjb0c8188tg"]
 
 [ext_resource type="Texture2D" uid="uid://bumwehaq1mlw1" path="res://assets/Knight/Attack/attack0.png" id="1_eobve"]
 [ext_resource type="Script" path="res://scripts/enemy_knight.gd" id="1_u4yv4"]
@@ -6,14 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://kcy5xkpon05o" path="res://assets/Knight/Attack/attack2.png" id="3_a2gl3"]
 [ext_resource type="Texture2D" uid="uid://dqcsi7yur4sjw" path="res://assets/Knight/Attack/attack4.png" id="4_cjund"]
 [ext_resource type="Texture2D" uid="uid://dg5gradpk7atp" path="res://assets/Knight/knight.png" id="5_ggu3c"]
+[ext_resource type="Texture2D" uid="uid://8nnshn8aek55" path="res://assets/Knight/Knight_On_Cloud/Attack/attack0.png" id="6_35a77"]
 [ext_resource type="Texture2D" uid="uid://vo0513cdhmv" path="res://assets/Knight/Walk/walk1.png" id="6_ck3c6"]
+[ext_resource type="Texture2D" uid="uid://dsvsitt6smcbe" path="res://assets/Knight/Knight_On_Cloud/Idle/idle.png" id="6_othdd"]
 [ext_resource type="Texture2D" uid="uid://xapelrxkllq1" path="res://assets/Knight/Walk/walk2.png" id="7_dbuks"]
+[ext_resource type="Texture2D" uid="uid://bhwyy5yhi803x" path="res://assets/Knight/Knight_On_Cloud/Attack/attack1.png" id="7_w4vgx"]
+[ext_resource type="Texture2D" uid="uid://c7ejyvgkkg4im" path="res://assets/Knight/Knight_On_Cloud/Attack/attack2.png" id="8_3himb"]
 [ext_resource type="Texture2D" uid="uid://bjmky27esaeuj" path="res://assets/Knight/Walk/walk3.png" id="8_lyw8v"]
+[ext_resource type="Texture2D" uid="uid://dttp5mudy2fmx" path="res://assets/Knight/Knight_On_Cloud/Attack/attack3.png" id="9_hxjln"]
 [ext_resource type="Texture2D" uid="uid://2rpkja3xgq5k" path="res://assets/Knight/Walk/walk4.png" id="9_tomlw"]
 [ext_resource type="Texture2D" uid="uid://duloi6ciwjpdg" path="res://assets/Knight/Walk/walk5.png" id="10_816tx"]
 [ext_resource type="Texture2D" uid="uid://cm4tekyp3mbky" path="res://assets/Knight/Walk/walk6.png" id="11_b6jd2"]
-[ext_resource type="Animation" uid="uid://cgl1nid5vti2u" path="res://resources/animations/Knight_Attack.tres" id="13_oxtgt"]
-[ext_resource type="Animation" uid="uid://o3rykyrlwwuu" path="res://resources/animations/Knight_Idle.tres" id="14_odgqs"]
 [ext_resource type="Animation" uid="uid://dshgx13hw8dns" path="res://resources/animations/Knight_Walk.tres" id="15_jcdxy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5l16o"]
@@ -33,6 +36,31 @@ animations = [{
 }],
 "loop": false,
 "name": &"Knight_Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_35a77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w4vgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3himb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hxjln")
+}],
+"loop": true,
+"name": &"Knight_Cloud_Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_othdd")
+}],
+"loop": true,
+"name": &"Knight_Cloud_Idle",
 "speed": 5.0
 }, {
 "frames": [],
@@ -99,10 +127,67 @@ tracks/1/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_e6v8y"]
+resource_name = "Knight_Cloud_Idle"
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Cloud_Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_slcdl"]
+resource_name = "Knight_Cloud_Attack"
+length = 0.5
+step = 0.12
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Knight_Cloud_Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 1, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_15gvx"]
 _data = {
-"Knight_Attack": ExtResource("13_oxtgt"),
-"Knight_Idle": ExtResource("14_odgqs"),
+"Knight_Attack": SubResource("Animation_slcdl"),
+"Knight_Idle": SubResource("Animation_e6v8y"),
 "Knight_Walk": ExtResource("15_jcdxy"),
 "RESET": SubResource("Animation_6j0pm")
 }
@@ -115,8 +200,8 @@ radius = 19.0
 height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_87wj5"]
-radius = 17.947
-height = 51.8848
+radius = 17.0162
+height = 65.2409
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_454if"]
 animation = &"Mage_Attack"
@@ -209,8 +294,8 @@ position = Vector2(50, -5)
 scale = Vector2(1.88291, 1.79135)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(-4.24874, -0.558238)
-rotation = -0.589342
+position = Vector2(-19.6504, 2.23295)
+rotation = -0.493171
 shape = SubResource("CapsuleShape2D_87wj5")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -294,6 +294,8 @@ text = "WASD
 Number keys to Switch Character
 Left Click to Attack
 Space to Jump
+R to use ultimate (invisibility for Rogue, Teleport for Mage)
+Kill boss to win
 "
 metadata/_edit_use_anchors_ = true
 

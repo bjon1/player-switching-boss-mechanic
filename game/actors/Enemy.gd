@@ -58,7 +58,7 @@ func handle_movement(delta):
 		position += distance_to_player * (current_character.speed) * delta
 		
 		# Play walking animation
-		animation_player.queue(current_character.character_name + "_Walk")
+		animation_player.queue(current_character.character_name + "_Idle")
 		
 		# Schedule the turn if the direction needs to change
 		if distance_to_player.x > 0 and scale.x < 0:
